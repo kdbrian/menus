@@ -9,7 +9,7 @@ servers:
       port: 6969
 
 paths:
-  /api/business:
+  /api/business/all:
     post:
       description: Add Business
 
