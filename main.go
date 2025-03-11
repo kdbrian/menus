@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/gofiber/fiber/v2"
 	. "github.com/kdbrian/menus/config"
+	"github.com/kdbrian/menus/internal/routes"
 	"log"
 	"os"
 )
@@ -18,8 +19,7 @@ func main() {
 
 	port := os.Getenv("PORT")
 	app := fiber.New()
-	api := fiber.New()
-	app.Mount("/api", api) //mounting the api
+	routes.SetUpRoutes(app)
 	log.Fatal(app.Listen(fmt.Sprintf(":%s", port)))
 
 }

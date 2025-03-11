@@ -13,6 +13,6 @@ func (service *BusinessService) GetBusinesses() ([]models.Business, error) {
 	return service.repo.GetBusinesses()
 }
 
-func (service *BusinessService) AddBusiness() (models.Business, error) {
-	return service.repo.GetBusinesses()
+func (service *BusinessService) AddBusiness(business models.Business) (models.Business, error) {
+	return service.repo.AddBusiness(business)
 }

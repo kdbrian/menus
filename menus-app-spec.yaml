@@ -1,9 +1,156 @@
 openapi: 3.1.0
 info:
-  title: $Title$
-  description: $Title$
+  title: Menus app
+  description: An app for menus, nothing much
   version: 1.0.0
 servers:
-  - url: '$https$'
+  - url: http://localhost:6969/
+    variables:
+      port: 6969
+
 paths:
-  $END$
+  /api/business:
+    post:
+      description: Add Business
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                location:
+                  type: String
+                  example: San Francisco
+
+                name:
+                  type: String
+                  example: Business X
+
+                contact_info:
+                  type: object
+                  properties:
+                    location_name:
+                      type: String
+                      example: San Francisco
+
+                    address:
+                      type: String
+                      example: 2nd Street
+
+                    zip_code:
+                      type: String
+                      example: 40100
+
+                    lat_lng:
+                      type: object
+                      example:
+                          lat : 39.00003
+                          lng : 0.0006
+                      schema:
+                        properties:
+                          lat:
+                            type: float
+                            example: 0.4441
+                          lng:
+                            type: float
+                            example: 39.0345
+
+      responses:
+        '201':
+          description: Successfully created
+          content:
+            application/json:
+              description: Json response body
+              schema:
+                type: object
+                properties:
+                  data:
+                    properties:
+                        gorm.Model:
+                          type: object
+
+                        location:
+                          type: String
+
+                        name:
+                          type: String
+
+                        contact_info:
+                          type: object
+                          properties:
+                            location_name:
+                              type: String
+                              example: San Franisco
+                            address:
+                              type: String
+                              example: 34 street
+                            zip_code:
+                              type: String
+                              example: 45090
+                            lat_lng:
+                              type: object
+                              properties:
+                                lat:
+                                  type: float
+                                  example: 3.14
+                                lng:
+                                  type: float
+                                  example: 0.39
+                  success:
+                    type: boolean
+                    example: true
+                  meta_info:
+                    type: map
+
+
+    get:
+      responses:
+        200:
+          description: Successful retrieval
+          content:
+            application/json:
+              schema:
+                type: object
+                content:
+                  success:
+                    type: boolean
+                    example: false
+                  data:
+                    type: array
+                    items:
+                      properties:
+                        gorm.Model:
+                          type: object
+
+                        location:
+                          type: String
+
+                        name:
+                          type: String
+
+                        contact_info:
+                          type: object
+                          properties:
+                            location_name:
+                              type: String
+                            address:
+                              type: String
+                            zip_code:
+                              type: String
+                            lat_lng:
+                              type: object
+                              schema:
+                                properties:
+                                  lat:
+                                    type: float
+                                  lng:
+                                    type: float
+
+
+
+
+
+  /api/business/{id}:
+
