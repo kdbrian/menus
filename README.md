@@ -1,2 +1,0 @@
-# menus
-The menus app
