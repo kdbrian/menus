@@ -4,8 +4,10 @@ import (
 	"fmt"
 	"github.com/gofiber/fiber/v2"
 	"github.com/kdbrian/menus/config"
+	. "github.com/kdbrian/menus/internal/dto"
 	"github.com/kdbrian/menus/internal/models"
 	"github.com/kdbrian/menus/internal/services"
+	"log"
 	"strconv"
 )
 
@@ -15,12 +17,26 @@ type BusinessHandler struct {
 
 func (receiver BusinessHandler) AddBusiness(c *fiber.Ctx) error {
 	var (
-		business models.Business
-		resp     models.ResponseBody
+		businessDto BusinessDto
+		business    models.Business
+		resp        models.ResponseBody
 	)
 
-	if c.BodyParser(&business) != nil {
-		return c.SendStatus(fiber.StatusBadRequest)
+	if c.BodyParser(&businessDto) != nil {
+		resp = models.ResponseBody{
+			Success: false,
+			Meta: map[string]interface{}{
+				"code":    fiber.StatusBadRequest,
+				"message": "Invalid request body",
+			},
+		}
+	}
+
+	business = models.Business{
+		Location:    businessDto.Location,
+		Name:        businessDto.Name,
+		ContactInfo: businessDto.ContactInfo,
+		Images:      businessDto.Images,
 	}
 
 	addBusiness, err := receiver.businessService.AddBusiness(business)
@@ -61,7 +77,7 @@ func (receiver BusinessHandler) GetBusiness(c *fiber.Ctx) error {
 	id := c.Params("id")
 	idInt, _ := strconv.Atoi(id)
 	var business models.Business
-	config.DB.Where("id = ?", idInt).First(&business, id)
+	config.DB.Where("ID = ?", idInt).First(business, id)
 	var resp models.ResponseBody
 
 	if &business != nil {

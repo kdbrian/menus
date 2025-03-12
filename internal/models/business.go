@@ -4,8 +4,8 @@ import "gorm.io/gorm"
 
 type Business struct {
 	gorm.Model
-	Location    string `json:"location"`
-	Name        string `json:"name"`
-	ContactInfo `json:"contact_info,omitempty"`
-	Images      []string `json:"images"`
+	Location    string `json:"location" db:"location"`
+	Name        string `json:"name" db:"name"`
+	ContactInfo `json:"contact_info,omitempty" db:"contact_info" gorm:"embedded"`
+	Images      StringArray `json:"images" db:"images" gorm:"type:jsonb"`
 }

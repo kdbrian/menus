@@ -13,7 +13,7 @@ func (r *BusinessRepository) GetBusinesses() ([]models.Business, error) {
 	return businesses, err
 }
 
-func (r BusinessRepository) AddBusiness(b models.Business) (models.Business, error) {
+func (r BusinessRepository) AddBusiness(b *models.Business) (*models.Business, error) {
 	err := config.DB.Create(&b).Error
 	return b, err
 }

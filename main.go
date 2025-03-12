@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/gofiber/fiber/v2"
+	"github.com/joho/godotenv"
 	. "github.com/kdbrian/menus/config"
 	"github.com/kdbrian/menus/internal/routes"
 	"log"
@@ -11,15 +12,21 @@ import (
 
 func main() {
 
+	//load env
+	godotenv.Load(".env.local")
+
 	//connect datasource
 	if err := Connect(); err != nil {
 		log.Fatal("failed to connect to DB : ", err)
 		return
 	}
 
+	//setup app
 	port := os.Getenv("PORT")
 	app := fiber.New()
 	routes.SetUpRoutes(app)
+
+	//listen
 	log.Fatal(app.Listen(fmt.Sprintf(":%s", port)))
 
 }

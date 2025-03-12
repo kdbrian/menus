@@ -11,7 +11,7 @@ func SetUpRoutes(app *fiber.App) {
 	api := app.Group("/api")
 
 	//business
-	api.Post("/business/new", businessHandler.AddBusiness)
+	api.Get("/business/", businessHandler.GetBusinesses)
+	api.Post("/business/", businessHandler.AddBusiness)
 	api.Get("/business/:id", businessHandler.GetBusiness)
-	api.Get("/business/all", businessHandler.GetBusinesses)
 }

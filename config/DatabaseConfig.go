@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"github.com/joho/godotenv"
+	"github.com/kdbrian/menus/internal/models"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"log"
@@ -64,7 +65,6 @@ func Connect() error {
 	}
 
 	dsn := dbConfig.Dsn()
-	log.Println("dsn = ", dsn)
 
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 
@@ -73,6 +73,13 @@ func Connect() error {
 	}
 
 	DB = db
+	migrate()
 
 	return nil
+}
+
+func migrate() {
+	DB.AutoMigrate(&models.Business{})
+	DB.AutoMigrate(&models.Menu{})
+	DB.AutoMigrate(&models.MenuItem{})
 }
