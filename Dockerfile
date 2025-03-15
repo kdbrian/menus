@@ -2,24 +2,23 @@ FROM golang:1.24 AS builder
 
 WORKDIR /app
 
-COPY   go.mod go.sum ./
+COPY go.mod go.sum ./
 
 RUN go mod download
 
 COPY . .
 
-RUN go build -o menus
+RUN go build -o menus .
 
+# Final image
 FROM alpine:latest
-WORKDIR /root
 
-CMD ["ls", "-1"]
+WORKDIR /root
 
 RUN apk --no-cache add ca-certificates
 
-COPY --from=builder /app .
+COPY --from=builder /app/menus .
 
 EXPOSE 6969
 
-RUN go run menus
-
+CMD ["./menus"]

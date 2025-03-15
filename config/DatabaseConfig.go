@@ -80,6 +80,5 @@ func Connect() error {
 
 func migrate() {
 	DB.AutoMigrate(&models.Business{})
-	DB.AutoMigrate(&models.Menu{})
-	DB.AutoMigrate(&models.MenuItem{})
+	DB.AutoMigrate(&models.Menu{}, &models.MenuItem{})
 }

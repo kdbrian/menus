@@ -12,13 +12,22 @@ services:
       - "5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
+      - ./config/menu.sql:/docker-entrypoint-initdb.d/menu.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d menuappdb"]
+      interval: 10s
+      retries: 5
+      timeout: 5s
 
   app:
     build: .
     depends_on:
-      - db
+      db:
+        condition: service_healthy
+    environment:
+      db_url: postgres://postgres:dev@db:5432/menusappdb?sslmode=disable
     ports:
-      - "6969"
+      - "6969:6969"
 volumes:
   pgdata:
 

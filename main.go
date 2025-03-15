@@ -5,7 +5,6 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/joho/godotenv"
 	. "github.com/kdbrian/menus/config"
-	"github.com/kdbrian/menus/internal/routes"
 	"log"
 	"os"
 )
@@ -24,7 +23,6 @@ func main() {
 	//setup app
 	port := os.Getenv("PORT")
 	app := fiber.New()
-	routes.SetUpRoutes(app)
 
 	//listen
 	log.Fatal(app.Listen(fmt.Sprintf(":%s", port)))
