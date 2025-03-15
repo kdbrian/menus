@@ -4,7 +4,6 @@ import (
 	"errors"
 	"fmt"
 	"github.com/joho/godotenv"
-	"github.com/kdbrian/menus/internal/models"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"log"
@@ -79,6 +78,4 @@ func Connect() error {
 }
 
 func migrate() {
-	DB.AutoMigrate(&models.Business{})
-	DB.AutoMigrate(&models.Menu{}, &models.MenuItem{})
 }
