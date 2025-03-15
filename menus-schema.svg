@@ -1,0 +1,889 @@
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'   width='2023' height='1640' viewBox='0 0 2023 1640' >
+  <script type='text/ecmascript'>
+  <![CDATA[
+  function hghl(el) { for ( var i in el ){ var elem = document.getElementById(el[i]); if ( elem != null ) elem.setAttribute('class','highlight');  }  }
+  function uhghl(el) { for ( var i in el ){ var elem = document.getElementById(el[i]); if ( elem != null ) elem.setAttribute('class','unhighlight'); }  } 
+  ]]>
+  </script> 
+
+<style type='text/css'>
+  text                { fill:#242528; font-weight:normal;stroke:#2a2b2c;stroke-width:.1px; font-family: Candara, 'Segoe UI', Dialog; font-size:13px; }
+  text.tableHeader    { fill:#576b57; font-weight:normal;stroke:#2a2b2c;stroke-width:.1px; font-family: Candara, 'Segoe UI', Dialog; font-size:13px;  font-weight: bold; }
+  a text:hover        { font-weight:500; }
+  text.highlight      { font-weight:500; }
+  text.white          { fill:#ffffff; }
+  text.colType        { fill:#b3b3b3; }
+  text.relName        { fill:#9c9a9a; stroke-width:0; }
+  text.dataType       { stroke:0; font-size:12px; text-anchor: end;}
+  text.legendTitle    { fill:#2b3b64; font-weight:500; }
+  text.legendSubTitle { fill:#616161; font-size:12px; }
+  path, circle        { stroke:#888581; stroke-width:1.5; fill:none; stroke-linecap:round; stroke-linejoin:round; }
+  .filled             { fill:#7f7971; }
+  path.virtual        { stroke:#71527b; }
+  path.logo           { fill:#fbeac0;fill-opacity:1;stroke-width:0.3;stroke:#222222; }
+  path.dotted         { stroke-dasharray:3,3; }
+  path.unhighlight    { stroke-width:12; opacity:0; pointer-events:all; }
+  path.highlight      { stroke-width:2; stroke:#1a3b69; opacity:1; pointer-events:all; }
+  path.line           { stroke-width:10; stroke-linecap:round; stroke-linejoin:round; }
+  rect.entity         { fill:#ffffff; stroke-width:1; shape-rendering:crispEdges;  filter:url(#shadow); }
+  line.delim          { stroke-width:1px; shape-rendering:crispEdges; }
+  text.callout        { fill:#201a10; font-family: Candara, 'Segoe UI', Dialog; font-size:14px; }
+  rect.callout        { fill:url(#calloutGradient); stroke-width:1px; stroke:#d0cec3; }
+  rect.shape          { stroke:#bebdbd; stroke-width:0.5; }
+  rect.legend         { fill:url(#legendGradient); stroke-width:1px; stroke:#d6dbe4; }
+  text.grp            { fill:#b1b1b1; }
+  rect.grp            { stroke:#919171; stroke-width:1; opacity:0.24; }
+  path.bgPattern      { fill:none;stroke-width:0.6;stroke:#e5e9ee; }
+  path.eval           { fill:#efefef;fill-opacity:1;stroke-width:0.6;stroke:#e9e9e9; }
+  rect.palpable       { fill:#fffbe5; }
+</style>
+<defs>
+  <pattern id="layoutBgA" width="60" height="34.64" patternUnits="userSpaceOnUse">
+    <rect x="0" y="0"  width="60" height="34.64" fill="#f7f7f8" />
+  </pattern>
+  <pattern id='layoutBgEval'  width='300' height='300' x='0' y='0' patternUnits="userSpaceOnUse">
+    <g transform='scale(1.5)'>
+    <path class='eval' d='m 62.011835,91.267143 c 3.536475,3.175214 2.262669,8.705999 -1.637711,11.015197 -3.594697,5.8423 -6.34682,-2.892623 -9.715478,-4.653898 -5.609222,-2.838926 2.050802,-6.680123 4.77004,-8.319046 2.334696,-0.724067 4.935143,0.312302 6.583149,1.957747 z m -2.720492,2.538595 c -2.698397,-3.517732 -9.282815,1.269287 -3.69635,3.568637 2.765331,5.605665 7.052809,-0.56184 3.69635,-3.568637 z' />
+    <path class='eval' d='m 72.25864,84.624638 c 4.108046,3.143003 -0.737059,6.895259 -1.994918,8.323564 -3.586718,5.561143 -6.495079,-4.197379 -10.07759,-5.582178 -4.443422,-1.088878 1.349298,-7.249213 2.503526,-2.503449 2.464639,4.517161 2.304019,-3.70697 6.291113,-1.995914 1.280083,0.137865 2.410691,0.864819 3.277869,1.757977 z m -2.646109,2.323242 c -4.797162,-3.078383 -2.810517,6.305507 0.515161,1.990646 0.296432,-0.688582 0.01209,-1.493412 -0.515161,-1.990646 z' />
+    <path class='eval' d='m 78.230641,79.436735 c 4.142121,3.027466 -2.020102,10.435276 -3.450543,5.477315 3.306312,-5.248112 -9.186019,-2.220094 -5.805994,-8.77679 -0.544141,-3.93011 6.797826,-2.102227 3.386015,0.245477 -0.181085,2.915838 4.637371,1.019311 5.870522,3.053982 z' />
+    <path class='eval' d='m 82.744502,72.597397 c -4.901605,1.926521 1.146497,6.285555 2.559694,2.225783 6.21817,3.539297 -6.640186,8.416664 -7.590325,1.997457 -2.24365,-2.914883 4.026676,-10.148618 5.030631,-4.22324 z' />
+    <path class='eval' d='m 90.727458,64.259158 c 1.583987,1.690029 3.321317,3.2696 4.81267,5.026353 -2.535706,6.849794 -6.445583,-5.918773 -8.388458,-0.167017 0.782768,2.03426 5.877405,3.752079 2.670979,5.711199 -3.315119,1.519161 -5.782422,-5.157931 -8.858893,-6.780537 -4.229842,-1.139816 1.510134,-7.074128 2.586227,-2.385939 3.141198,5.495193 1.840537,-5.598295 7.177489,-1.404062 z' />
+    <path class='eval' d='m 99.622027,58.374253 c 1.493293,1.9548 -6.281936,7.024659 -0.885258,4.740447 0.386238,-4.434477 6.131941,-1.133173 2.175851,1.618005 -4.421491,6.12739 -13.666659,-3.151506 -7.058299,-7.136537 1.785129,-1.119329 4.348209,-0.743179 5.767706,0.778085 z m -2.900824,1.89746 c -3.608188,-2.208543 -2.280489,5.00803 -0.12563,0.329531 z' />
+    <path class='eval' d='m 115.18023,50.570441 c -1.61703,5.201678 -4.6204,-0.364502 -7.01598,-1.749619 -4.40977,2.122562 4.89641,4.913939 1.89606,7.018157 -2.48061,3.877635 -4.11404,-4.060614 -7.01192,-2.6391 -1.76318,3.107252 7.28394,6.252304 0.87346,7.876177 -1.74515,-2.956649 -9.055498,-5.610518 -3.950378,-8.66062 1.696478,1.897023 1.770418,-5.43503 5.347308,-3.072411 -0.44014,-5.474701 6.11995,-4.950882 7.7846,-0.815355 0.69076,0.682329 1.39587,1.351469 2.07685,2.042771 z' />
+    <path class='eval' d='m 120.54891,39.417125 c 2.50681,1.334124 4.80466,4.941837 0.75044,5.297362 -0.46414,1.89865 -5.25369,5.602652 -8.01742,1.815475 -3.87345,-2.809139 -0.0676,-7.603869 2.3036,-8.133924 1.6795,-3.853018 3.16703,-1.199465 4.96338,1.021087 z m -2.2464,2.175828 c -4.8049,-2.992167 -3.08987,6.380358 0.42374,2.036159 0.33052,-0.677508 0.12099,-1.525836 -0.42374,-2.036159 z' />
+    <path class='eval' d='m 128.50836,24.06821 c -5.10403,3.035506 3.20535,6.383175 5.05938,9.450276 -0.91853,2.95886 -4.06493,3.650723 -5.34691,0.265618 -2.25715,-2.089033 -4.65672,-6.948595 -7.07024,-2.584686 -4.71758,-3.764394 3.81217,-5.812054 5.12382,-9.226328 0.75738,0.677487 1.38637,1.498638 2.23389,2.095175 z' />
+    <path class='eval' d='m 137.14366,22.299812 c -3.09615,2.259885 0.71537,4.412454 1.99042,6.435866 -3.08975,5.080354 -5.91384,-2.98648 -8.92144,-4.094939 1.44369,-3.219573 3.3497,-1.335928 4.27156,-4.41058 0.97822,-0.894325 1.75044,1.871047 2.65946,2.069653 z' />
+    <path class='eval' d='m 136.85093,14.890174 c 2.31562,5.283511 -7.17975,1.771993 -1.29675,-0.475107 l 0.7108,0.08973 z m 4.867,5.317354 c 2.56912,1.439678 4.26517,4.725219 0.30678,5.233637 -1.56592,-3.098864 -9.51683,-5.749448 -3.64502,-8.633714 1.17746,0.325095 2.15375,2.591149 3.33824,3.400077 z' />
+    <path class='eval' d='m 149.95578,11.976423 c 2.50679,1.334142 4.80455,4.94192 0.75041,5.297394 -0.4641,1.898604 -5.25368,5.602645 -8.0174,1.81545 -3.87347,-2.80918 -0.0676,-7.603844 2.30366,-8.133968 1.67949,-3.8530525 3.16695,-1.1993573 4.96333,1.021124 z m -2.24641,2.175828 c -4.80489,-2.992177 -3.08986,6.380343 0.42374,2.036167 0.33055,-0.677518 0.121,-1.52585 -0.42374,-2.036167 z' />
+    <path class='eval' d='m 153.26135,7.538431 c 2.60497,1.5799548 6.03999,5.944272 1.08117,6.050232 -2.53319,-3.231828 -7.20316,-6.4304525 -8.84748,-9.4582682 1.89121,-2.8664883 3.78452,-2.247699 5.38514,0.8929426 0.78017,0.8503859 1.57195,1.6911437 2.38118,2.5150667 z' />
+    </g>
+  </pattern>
+  <linearGradient id='legendGradient' x1='0%' y1='0%' x2='100%' y2='0%'>
+    <stop offset='0%' stop-color='#eef5fc' />
+    <stop offset='100%' stop-color='#f7fafe' />
+  </linearGradient>
+  <!-- https://norbat.de/svg-pattern-3d-webmuster/ -->
+  <linearGradient id='calloutGradient' x1='0%' y1='0%' x2='100%' y2='0%'>
+    <stop offset='0%' stop-color='#efeae1dd' />
+    <stop offset='100%' stop-color='#e8e9eadd' />
+  </linearGradient>
+  <filter id="shadow">
+    <feDropShadow dx="0" dy="0" stdDeviation="3" flood-color="#a0a0a0" flood-opacity="0.4" />
+  </filter>
+  <!--
+  <filter id='shadow2' width='120%' height='120%'>
+    <feOffset result='offOut' in='SourceGraphic' dx='0' dy='0' />
+    <feColorMatrix result='matrixOut' in='offOut'
+                   values='0.5 0 0 0 0 0 0.5 0 0 0 0 0 0.5 0 0 0 0 0 0.5 0' />
+    <feGaussianBlur result='blurOut' in='matrixOut' stdDeviation='3' />
+    <feBlend in='SourceGraphic' in2='blurOut' />
+  </filter>
+  -->
+  <filter id='fkShadow' height='130%'>
+    <feGaussianBlur in='SourceAlpha' stdDeviation='1.5'/> <!-- stdDeviation is how much to blur -->
+    <feOffset dx='1.2' dy='1.2' result='offsetblur'/> <!-- how much to offset -->
+    <feMerge>
+      <feMergeNode/> <!-- this contains the offset blurred image -->
+      <feMergeNode in='SourceGraphic'/> <!-- this contains the element that the filter is applied to -->
+    </feMerge>
+  </filter>
+  <symbol id='calloutArrowDown' >
+    <path d='M 0,0 L 8,12 L 16,0 z' style='fill:#f8f6d1;stroke:none; filter: url(#shadow);' />
+    <path d='M 0,0 L 8,12 L 16,0' style='stroke:#bebdbd; stroke-width:0.5;' />
+  </symbol>
+  <symbol id='calloutArrowUp' >
+    <path d='M 0,16 L 8,4 L 16,16 z' style='fill:#ffffff; stroke:none; filter: url(#shadow);' />
+    <path d='M 0,16 L 8,4 L 16,16' style='stroke:#bebdbd; stroke-width:0.5;' />
+  </symbol>
+  <symbol id='pk' width="13" height="13">
+    <g>
+      <path style='fill:#f0d938;stroke:#906b25;stroke-width:0.6;stroke-linecap:round;stroke-linejoin:round;'
+            d='M 9.3678877,3.5695485 C 9.1030218,3.2729386 9.0796382,2.7628519 9.3396185,2.4517097 9.5449651,2.1956495 9.9040386,2.0980533 10.199638,2.2169415 10.533525,2.3415459 10.775153,2.706942 10.750675,3.0842709 10.737029,3.3980003 10.541153,3.699122 10.258248,3.8066067 9.966649,3.9250429 9.6169668,3.8418805 9.4008073,3.6062324 9.3894892,3.5943518 9.3785264,3.582104 9.3678886,3.5695487 z M 11.226617,6.9916004 C 11.888137,6.3548946 12.293488,5.4172188 12.311087,4.442353 12.378144,2.7379364 11.248678,1.0541269 9.7322318,0.44767357 8.3887112,-0.1280313 6.7865012,0.26822889 5.8918395,1.4007929 5.080823,2.3839145 4.9336815,3.8452096 5.3635544,5.101615 L 4.3670905,5.315913 C 4.0664984,5.3682645 4.0967703,5.6316724 4.2574957,5.8208829 L 4.9124,6.5655244 4.1543436,7.2512357 3.2136002,7.2163506 3.1674775,8.5586827 2.0406832,8.5086512 1.5965306,8.9299953 1.5471661,10.179833 0.75616674,10.195223 0.2112857,10.758575 0.15354288,11.735988 0.07199052,12.765553 c 0.36440953,0.238225 0.79006967,0.195492 1.44938278,-0.02675 L 6.3033562,8.1282037 6.8217102,8.6765688 C 6.9985465,8.8799427 7.3003699,8.7497574 7.358381,8.5016252 L 7.4938877,7.5084164 c 0.8537488,0.3985387 1.8303125,0.4711541 2.6851793,0.1427713 0.393927,-0.1407258 0.746858,-0.3701772 1.04755,-0.6595873 z'/>
+      <path d='M 6.8014948,6.3102123 0.15369063,13.024481 0.21560535,12.141962 6.0062342,6.2683782 z'
+            style='fill:#ffe5a5;fill-opacity:1;stroke:#906b25;stroke-width:0.06912433;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:3.00300009'/>
+    </g>
+  </symbol>
+  <symbol id='idx1' width="13" height="13">
+    <g transform='scale(0.99)'>
+      <rect width='4' height='4' x='7' y='1' style='fill:#ffff3f;stroke:#b48333;stroke-width:0.6;' ry='0.83'/>
+      <rect width='4' height='4' x='1' y='7' style='fill:#ffff3f;stroke:#b48333;stroke-width:0.6;' ry='0.832'/>
+      <rect width='4' height='4' x='7' y='7' style='fill:#ffff3f;stroke:#b48333;stroke-width:0.6;' ry='0.832'/>
+    </g>
+  </symbol>
+  <symbol id='idx2' width="13" height="13">
+    <g transform='scale(0.99)'>
+      <rect width='4' height='3' x='6' y='1' style='fill:#7fc8e9;stroke:#2f6f8c;stroke-width:0.6;' ry='0.83'/>
+      <rect width='7' height='3' x='3' y='6' style='fill:#7fc8e9;stroke:#2f6f8c;stroke-width:0.6;' ry='0.832'/>
+    </g>
+  </symbol>
+  <symbol id='unq' width="13" height="13">
+    <g transform='scale(0.99)'>
+      <rect style='fill:none;stroke:#7e4d31;stroke-width:0.71934468;stroke-linecap:round;stroke-linejoin:round;'
+            width='2.29' height='8.43' x='7.48' y='-0.76' ry='1.14' transform='matrix(0.701,0.713,-0.727,0.685,0,0)' />
+      <path style='fill:white;stroke:#858585;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;'
+            d='m 26.04,8.64 a 4.13,4.13 0 1 1 -8.26,0 4.13,4.13 0 1 1 8.26,0 z'
+            transform='matrix(1.025,0,0,0.987,-14.690,-3.862)' />
+      <text x='5.4' y='7.2' style='font-size:7px;fill:#655c59;'>U</text>
+    </g>
+  </symbol>
+  <symbol id='idx' width="13" height="13">
+    <g transform='scale(0.99)'>
+      <rect style='fill:none;stroke:#7e4d31;stroke-width:0.71934468;stroke-linecap:round;stroke-linejoin:round;'
+            width='2.29' height='8.0' x='7.48' y='-0.76' ry='1.14' transform='matrix(0.701,0.713,-0.727,0.685,0,0)' />
+      <path style='fill:#f7f7f8;stroke:#858585;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;'
+            d='m 26.04,8.64 a 4.13,4.13 0 1 1 -8.26,0 4.13,4.13 0 1 1 8.26,0 z'
+            transform='matrix(1.025,0,0,0.987,-14.690,-3.862)' />
+    </g>
+  </symbol>
+  <symbol id='fk' width="13" height="13">
+    <g transform='scale(0.87)'>
+      <path style='fill:#6a88cd;stroke:#5a72a8;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;'
+            d='M 12.48,0.33 7.07,0.89 9.067,2.974 0.329,11.731 1.073,12.597 9.811,3.841 11.77,5.78 z' />
+    </g>
+  </symbol>
+  <symbol id='ref' width="13" height="13">
+    <g transform='scale(0.87)'>
+      <path style='fill:#f0d938;stroke:#906b25;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;'
+            d='M 0.10,12.70 5.31,12.15 3.40,10.06 11.82,1.32 11.11,0.45 2.68,9.19 0.80,7.24 z'/>
+    </g>
+  </symbol>
+  <symbol id='flag0' width="13" height="13">
+    <g transform='scale(0.92)'>
+      <path style='fill:#b7d0f6;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;'
+            d='M 0.12,12.67 0.16,7.22 C 2.59,7.22 4.13,8.78 9.22,4.22 5.68,4.98 2.53,4.50 0.09,1.80 z'/>
+    </g>
+  </symbol>
+  <symbol id='flag1' width="13" height="13">
+    <g transform='scale(0.92)'>
+      <path style='fill:#f4a393;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;'
+            d='M 0.12,12.67 0.16,7.22 C 2.59,7.22 4.13,8.78 9.22,4.22 5.68,4.98 2.53,4.50 0.09,1.80 z'/>
+    </g>
+  </symbol>
+  <symbol id='flag2' width="13" height="13">
+    <g transform='scale(0.92)'>
+      <path style='fill:#77ec8b;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;'
+            d='M 0.12,12.67 0.16,7.22 C 2.59,7.22 4.13,8.78 9.22,4.22 5.68,4.98 2.53,4.50 0.09,1.80 z'/>
+    </g>
+  </symbol>
+  <symbol id='nn' width="3" height="3">
+    <path style='stroke:#9b3e50;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;'
+          d='M 0,0 3,3 M 0,3 3,0 z'/>
+  </symbol>
+  <symbol id='virtual' width="16" height="16">
+    <g transform='scale(0.99)'>
+      <circle cx='8' cy='8' r='5' style='#9e9185;stroke-width:1;fill:transparent' />
+      <path style='stroke:#5394b8;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;'
+            d='M 2.71,5.8 Q-2.12,-2.20 9.15,6.52 Q 17.92,17.67 10.53,13.56'/>
+      <path style='stroke:#5394b8;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;'
+            d='M 5.47,13.64 Q -1.82,17.24 6.65,6.78 Q 17.88,-1.36 13.51,5.42'/>
+    </g>
+  </symbol>
+  <symbol id='leaf' width="16" height="16">
+    <g transform='scale(0.99)'>
+      <path style='stroke:#7290ab9d;stroke-width:1;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;'
+            d='M .7,0 L.7,9.2 L3.85,9.2'/>
+      <text x="4" y="13" style='fill:#b0880d;stroke-width:0;font-size:14px;'>{ }</text>
+    </g>
+  </symbol>
+  <symbol id='leafArray' width="16" height="16">
+    <g transform='scale(0.99)'>
+      <path style='stroke:#7290ab9d;stroke-width:1;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;'
+            d='M .7,0 L.7,9.2 L3.85,9.2'/>
+      <text x="4" y="13" style='fill:#b0880d;stroke-width:0;font-size:14px;'>[ ]</text>
+    </g>
+  </symbol>
+  <symbol id='view' width="13" height="13">
+    <g transform='scale(0.99)'>
+      <line x1='12' y1='6' x2='19' y2='0' stroke='black' stroke-width='0.5' />
+      <line x1='0' y1='6' x2='7' y2='0' stroke='black' stroke-width='0.5' />
+      <circle cx='3' cy='6' r='3' fill='#f9ebbc' stroke='black' stroke-width='0.5'/>
+      <circle cx='10' cy='6' r='3' fill='#f9ebbc' stroke='black' stroke-width='0.5'/>
+    </g>
+  </symbol>
+  <symbol id='logo' width="100" height="100" style="filter:url(#shadow);">
+    <path style='stroke:none;fill:#5d5d5d' d='M2.41,6.80 17.39,0.35 26.83,7.21 28.32,24.45 12.62,29.77 1.74,23.96'/>
+    <path style='stroke:none;fill:#efefef' d='M 2.21, 6.45  9.36, 3.49  9.42,11.63  2.04,14.42'/>
+    <path style='stroke:none;fill:#efefef' d='M10.23, 3.14 17.39, 0.17 17.68, 8.59 10.29,11.28'/>
+    <path style='stroke:none;fill:#d2d2d2' d='M17.44, 0.17 21.59, 3.55 22.36,11.43 17.76,8.63'/>
+    <path style='stroke:none;fill:#d2d2d2' d='M22.67, 4.33 26.98, 7.06 27.65,14.77 23.20,11.77'/>
+    <path style='stroke:none;fill:#efefef' d='M1.89,15.58  9.39,12.65  9.48,21.14  1.57,24.10'/>
+    <path style='stroke:none;fill:#17afde' d='M10.38,12.36 17.70, 9.51 18.11,18.37 10.32 20.96'/>
+    <path style='stroke:none;fill:#1389ad' d='M17.73, 9.59 22.41,12.47 22.82,21.14 18.05,18.34'/>
+    <path style='stroke:none;fill:#d2d2d2' d='M23.26,12.94 27.62,15.70 28.42,24.54 23.69,21.60'/>
+    <path style='stroke:none;fill:#828282' d='M1.57,24.19  9.45,21.22 14.30,24.40  6.80,26.80'/>
+    <path style='stroke:none;fill:#0c485c' d='M10.47,20.90 18.11,18.32 22.82,21.19 15.20,23.81'/>
+    <path style='stroke:none;fill:#828282' d='M23.69,21.63 28.32,24.65 20.87,27.07 15.84,24.30'/>
+    <path style='stroke:none;fill:#828282' d='M14.94,24.68 19.80,27.41 12.59,29.97  7.73,27.21'/>
+  </symbol>
+    <symbol id="bulb" viewBox="0 0 24 24">
+      <rect x="10" y="16" width="4" height="6" rx="1.5" ry="1.5" style='fill:#c4ae85;stroke:#c3ad44;stroke-width:0.3;stroke-linecap:round;stroke-linejoin:round;filter:url(#shadow);' />
+      <circle cx="12" cy="12" r="5" style='fill:#fff9c1;stroke:#c3ad44;stroke-width:0.3;filter:url(#shadow);'/>
+    </symbol>
+</defs>
+
+<defs>  <marker id='ZeroMore' viewBox='0 0 8.50 8.50' refX='4.25' refY='4.25' markerWidth='8.50' markerHeight='8.50' orient='auto-start-reverse'>
+    <path d='M 2.13,4.25 L 4.25,4.25 M 6.38,4.25 L 8.50,4.25 z' style='stroke-width:1;'/>
+    <path d='M 8.50,0.00 L 4.25,4.25 L 8.50,8.50' style='stroke-width:1;'/>
+    <path d='M 0.00,4.25 L 8.50,4.25 z' style='stroke-width:1;'/>
+  </marker>
+  <marker id='ZeroOne' viewBox='0 0 8.50 8.50' refX='4.25' refY='4.25' markerWidth='8.50' markerHeight='8.50' orient='auto-start-reverse'>
+    <path d='M 2.13,4.25 L 4.25,4.25 M 6.38,4.25 L 8.50,4.25 z' style='stroke-width:1;'/>
+  </marker>
+  <marker id='OneMore' viewBox='0 0 8.50 8.50' refX='4.25' refY='4.25' markerWidth='8.50' markerHeight='8.50' orient='auto-start-reverse'>
+    <path d='M 4.25,4.25 L 8.50,4.25 z' style='stroke-width:1;'/>
+    <path d='M 8.50,0.00 L 4.25,4.25 L 8.50,8.50' style='stroke-width:1;'/>
+    <path d='M 0.00,4.25 L 8.50,4.25 z' style='stroke-width:1;'/>
+  </marker>
+  <marker id='One' viewBox='0 0 8.50 8.50' refX='4.25' refY='4.25' markerWidth='8.50' markerHeight='8.50' orient='auto-start-reverse'>
+    <path d='M 4.25,4.25 L 8.50,4.25 z' style='stroke-width:1;'/>
+  </marker>
+  <marker id='Range' viewBox='0 0 8.50 8.50' refX='4.25' refY='4.25' markerWidth='8.50' markerHeight='8.50' orient='auto-start-reverse'>
+    <path d='M 4.25,4.25 L 8.50,4.25 z' style='stroke-width:1;'/>
+  </marker>
+  <marker id='Arrow' viewBox='0 0 8.50 8.50' refX='4.25' refY='4.25' markerWidth='8.50' markerHeight='8.50' orient='auto-start-reverse'>
+    <path d='M 4.250,4.250 L 8.500,4.250 L 4.250,0.000 L 8.500,4.250 L 4.250,8.500' style='stroke-width:1;'/>
+  </marker>
+  <linearGradient id='tbg_BED3F4' x1='0%' y1='0%' x2='100%' y2='0%' >
+     <stop offset='0%' stop-color='#C5D4EE' /> 
+     <stop offset='100%' stop-color='#EBEFF7' /> 
+  </linearGradient>
+  <linearGradient id='tln_BED3F4' x1='0%' y1='0%' x2='100%' y2='0%' >
+     <stop offset='0%' stop-color='#D7DEEB' /> 
+     <stop offset='20%' stop-color='#6882AE' /> 
+     <stop offset='100%' stop-color='#D7DEEB' /> 
+  </linearGradient>
+  <linearGradient id='tbg_C7F4BE' x1='0%' y1='0%' x2='100%' y2='0%' >
+     <stop offset='0%' stop-color='#CBEEC5' /> 
+     <stop offset='100%' stop-color='#EDF7EB' /> 
+  </linearGradient>
+  <linearGradient id='tln_C7F4BE' x1='0%' y1='0%' x2='100%' y2='0%' >
+     <stop offset='0%' stop-color='#DAEBD7' /> 
+     <stop offset='20%' stop-color='#73AE68' /> 
+     <stop offset='100%' stop-color='#DAEBD7' /> 
+  </linearGradient>
+  <linearGradient id='tbg_F4DDBE' x1='0%' y1='0%' x2='100%' y2='0%' >
+     <stop offset='0%' stop-color='#EEDCC5' /> 
+     <stop offset='100%' stop-color='#F7F1EB' /> 
+  </linearGradient>
+  <linearGradient id='tln_F4DDBE' x1='0%' y1='0%' x2='100%' y2='0%' >
+     <stop offset='0%' stop-color='#EBE2D7' /> 
+     <stop offset='20%' stop-color='#AE8F68' /> 
+     <stop offset='100%' stop-color='#EBE2D7' /> 
+  </linearGradient>
+  <linearGradient id='tbg_3986C1' x1='0%' y1='0%' x2='100%' y2='0%' >
+     <stop offset='0%' stop-color='#C5DCEE' /> 
+     <stop offset='100%' stop-color='#EBF1F7' /> 
+  </linearGradient>
+  <linearGradient id='tln_3986C1' x1='0%' y1='0%' x2='100%' y2='0%' >
+     <stop offset='0%' stop-color='#D7E2EB' /> 
+     <stop offset='20%' stop-color='#688FAE' /> 
+     <stop offset='100%' stop-color='#D7E2EB' /> 
+  </linearGradient>
+</defs>
+
+<!-- == Shape Colors == -->
+<!-- == Desktop == -->
+<rect x='0' y='0' width='2023' height='1640' style='fill:url(#layoutBgA); stroke:#ccc; stroke-width:.7px; cursor:move;' />
+
+<!-- == Legend == -->
+<g transform='translate(10,10)'>
+  <rect x='10' y='10' width='360' height='70' rx='7' ry='7' class='legend'/> 
+  <use x='349' y='28' xlink:href='#bulb' width='24' height='24'><title>Read column and table comments by hovering the columns and tables.
+Zoom with CTRL+whell mouse button, pan by dragging the diagram with the right-mouse button</title></use>
+  <use x='20' y='40' xlink:href='#logo'><title>DbSchema Database Designer </title></use>  <text x='20' y='30' class='legendTitle' >Main Diagram</text> 
+  <text x='57' y='47' class='legendSubTitle'><tspan>Read schema comments as mouse-over tooltips</tspan></text>
+  <a xlink:href='https://dbschema.com'><text x='57' y='61' class='legendSubTitle'><tspan>DbSchema.com © 2025-03-15 Wise Coders<title>DbSchema is an universal database designer.
+DbSchema has a free Community Edition.</title></tspan></text></a> 
+</g>
+
+<g transform='translate(0,110)'>
+<!-- == Group 'reviews/orders' == -->
+<rect class='grp' style='fill:#FFF9F2;stroke:#C5AE90' x='35' y='917' width='644' height='543' rx='8' ry='8' />
+<text x='47' y='934' style='fill:#C5AE90;'>reviews&#47;orders</text>
+<!-- == Group 'menus' == -->
+<rect class='grp' style='fill:#F4FFF2;stroke:#98C590' x='1123' y='50' width='865' height='815' rx='8' ry='8' />
+<text x='1135' y='67' style='fill:#98C590;'>menus</text>
+<!-- == Group 'users' == -->
+<rect class='grp' style='fill:#F2F6FF;stroke:#90A4C5' x='35' y='50' width='984' height='764' rx='8' ry='8' />
+<text x='47' y='67' style='fill:#90A4C5;'>users</text>
+<!-- == Fk 'analytics_fk_analytics_analytics_events' == -->
+<path id='analytics_fk_analytics_analytics_events'  onmouseover="hghl(['analytics_fk_analytics_analytics_events','public.analytics.event_code','public.analytics_events.event_code'])" onmouseout="uhghl(['analytics_fk_analytics_analytics_events','public.analytics.event_code','public.analytics_events.event_code'])" transform='translate(8,0)' class='unhighlight' d='M 646,459L 731,459' >
+	<title>&#x1F517;  Foreign Key fk_analytics_analytics_events
+analytics ref analytics_events ( event_code )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#ZeroMore)' marker-end='url(#One)'  class='dotted '  d='M 646,459L 731,459' ><title>&#x1F517;  Foreign Key fk_analytics_analytics_events
+analytics ref analytics_events ( event_code )</title></path>
+<text x='656' y='454' transform='rotate(0 656,454)' class='relName'>event&#95;code</text>
+<!-- == Fk 'business_fk_business_contact_info' == -->
+<path id='business_fk_business_contact_info'  onmouseover="hghl(['business_fk_business_contact_info','public.business.contact_info','public.contact_info.id'])" onmouseout="uhghl(['business_fk_business_contact_info','public.business.contact_info','public.contact_info.id'])" transform='translate(8,0)' class='unhighlight' d='M 1598,102L 1513,102' >
+	<title>&#x1F517;  Foreign Key fk_business_contact_info
+business ref contact_info ( contact_info -&gt; id )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#ZeroMore)' marker-end='url(#One)'  class='dotted '  d='M 1598,102L 1513,102' ><title>&#x1F517;  Foreign Key fk_business_contact_info
+business ref contact_info ( contact_info -&gt; id )</title></path>
+<text x='1528' y='97' transform='rotate(0 1528,97)' class='relName'>contact&#95;info</text>
+<!-- == Fk 'business_fk_business_user' == -->
+<path id='business_fk_business_user'  onmouseover="hghl(['business_fk_business_user','public.business.profile_id','public.users.id'])" onmouseout="uhghl(['business_fk_business_user','public.business.profile_id','public.users.id'])" transform='translate(8,0)' class='unhighlight' d='M 1632,272L 1632,280Q 1632,289 1623,289L 425,289' >
+	<title>&#x1F517;  Foreign Key fk_business_user
+business ref users ( profile_id -&gt; id )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#ZeroMore)' marker-end='url(#One)'  class='dotted '  d='M 1632,272L 1632,280Q 1632,289 1623,289L 425,289' ><title>&#x1F517;  Foreign Key fk_business_user
+business ref users ( profile_id -&gt; id )</title></path>
+<text x='1645' y='274' transform='rotate(90 1645,274)' class='relName'>profile&#95;id</text>
+<!-- == Fk 'delivery_info_fk_delivery_info_contact_info' == -->
+<path id='delivery_info_fk_delivery_info_contact_info'  onmouseover="hghl(['delivery_info_fk_delivery_info_contact_info','public.delivery_info.contact_info','public.contact_info.id'])" onmouseout="uhghl(['delivery_info_fk_delivery_info_contact_info','public.delivery_info.contact_info','public.contact_info.id'])" transform='translate(8,0)' class='unhighlight' d='M 1394,340L 1394,255' >
+	<title>&#x1F517;  Foreign Key fk_delivery_info_contact_info
+delivery_info ref contact_info ( contact_info -&gt; id )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#ZeroMore)' marker-end='url(#One)'  class='dotted '  d='M 1394,340L 1394,255' ><title>&#x1F517;  Foreign Key fk_delivery_info_contact_info
+delivery_info ref contact_info ( contact_info -&gt; id )</title></path>
+<text x='1397' y='338' transform='rotate(270 1397,338)' class='relName'>contact&#95;info</text>
+<!-- == Fk 'delivery_info_fk_delivery_info_users' == -->
+<path id='delivery_info_fk_delivery_info_users'  onmouseover="hghl(['delivery_info_fk_delivery_info_users','public.delivery_info.user_id','public.users.id'])" onmouseout="uhghl(['delivery_info_fk_delivery_info_users','public.delivery_info.user_id','public.users.id'])" transform='translate(8,0)' class='unhighlight' d='M 1360,357L 1300,357Q 1292,357 1292,348L 1292,331Q 1292,323 1283,323L 425,323' >
+	<title>&#x1F517;  Foreign Key fk_delivery_info_users
+delivery_info ref users ( user_id -&gt; id )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#ZeroMore)' marker-end='url(#One)'  class='dotted '  d='M 1360,357L 1300,357Q 1292,357 1292,348L 1292,331Q 1292,323 1283,323L 425,323' ><title>&#x1F517;  Foreign Key fk_delivery_info_users
+delivery_info ref users ( user_id -&gt; id )</title></path>
+<text x='1323' y='352' transform='rotate(0 1323,352)' class='relName'>user&#95;id</text>
+<!-- == Fk 'device_info_fk_device_info_users' == -->
+<path id='device_info_fk_device_info_users'  onmouseover="hghl(['device_info_fk_device_info_users','public.device_info.user_id','public.users.id'])" onmouseout="uhghl(['device_info_fk_device_info_users','public.device_info.user_id','public.users.id'])" transform='translate(8,0)' class='unhighlight' d='M 153,425L 153,314Q 153,306 161,306L 255,306' >
+	<title>&#x1F517;  Foreign Key fk_device_info_users
+device_info ref users ( user_id -&gt; id )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#One)' marker-end='url(#One)'    d='M 153,425L 153,314Q 153,306 161,306L 255,306' ><title>&#x1F517;  Foreign Key fk_device_info_users
+device_info ref users ( user_id -&gt; id )</title></path>
+<text x='156' y='423' transform='rotate(270 156,423)' class='relName'>user&#95;id</text>
+<!-- == Fk 'device_info_fk_device_info_analytics' == -->
+<path id='device_info_fk_device_info_analytics'  onmouseover="hghl(['device_info_fk_device_info_analytics','public.device_info.id','public.analytics.device_info'])" onmouseout="uhghl(['device_info_fk_device_info_analytics','public.device_info.id','public.analytics.device_info'])" transform='translate(8,0)' class='unhighlight' d='M 170,544L 510,544' >
+	<title>&#x1F517;  Foreign Key fk_device_info_analytics
+device_info ref analytics ( id -&gt; device_info )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#One)' marker-end='url(#One)'    d='M 170,544L 510,544' ><title>&#x1F517;  Foreign Key fk_device_info_analytics
+device_info ref analytics ( id -&gt; device_info )</title></path>
+<text x='180' y='539' transform='rotate(0 180,539)' class='relName'>id</text>
+<!-- == Fk 'list_reviews_fk_list_reviews_lists' == -->
+<path id='list_reviews_fk_list_reviews_lists'  onmouseover="hghl(['list_reviews_fk_list_reviews_lists','public.list_reviews.list_id','public.lists.id'])" onmouseout="uhghl(['list_reviews_fk_list_reviews_lists','public.list_reviews.list_id','public.lists.id'])" transform='translate(8,0)' class='unhighlight' d='M 425,1122L 425,1215Q 425,1224 433,1224L 527,1224' >
+	<title>&#x1F517;  Foreign Key fk_list_reviews_lists
+list_reviews ref lists ( list_id -&gt; id )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#OneMore)' marker-end='url(#One)'    d='M 425,1122L 425,1215Q 425,1224 433,1224L 527,1224' ><title>&#x1F517;  Foreign Key fk_list_reviews_lists
+list_reviews ref lists ( list_id -&gt; id )</title></path>
+<text x='438' y='1124' transform='rotate(90 438,1124)' class='relName'>list&#95;id</text>
+<!-- == Fk 'list_reviews_fk_list_reviews_reviews' == -->
+<path id='list_reviews_fk_list_reviews_reviews'  onmouseover="hghl(['list_reviews_fk_list_reviews_reviews','public.list_reviews.review_id','public.reviews.id'])" onmouseout="uhghl(['list_reviews_fk_list_reviews_reviews','public.list_reviews.review_id','public.reviews.id'])" transform='translate(8,0)' class='unhighlight' d='M 442,969L 527,969' >
+	<title>&#x1F517;  Foreign Key fk_list_reviews_reviews
+list_reviews ref reviews ( review_id -&gt; id )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#OneMore)' marker-end='url(#One)'    d='M 442,969L 527,969' ><title>&#x1F517;  Foreign Key fk_list_reviews_reviews
+list_reviews ref reviews ( review_id -&gt; id )</title></path>
+<text x='452' y='964' transform='rotate(0 452,964)' class='relName'>review&#95;id</text>
+<!-- == Fk 'list_reviews_fk_list_reviews_users' == -->
+<path id='list_reviews_fk_list_reviews_users'  onmouseover="hghl(['list_reviews_fk_list_reviews_users','public.list_reviews.user_id','public.users.id'])" onmouseout="uhghl(['list_reviews_fk_list_reviews_users','public.list_reviews.user_id','public.users.id'])" transform='translate(8,0)' class='unhighlight' d='M 408,935L 408,340' >
+	<title>&#x1F517;  Foreign Key fk_list_reviews_users
+list_reviews ref users ( user_id -&gt; id )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#ZeroMore)' marker-end='url(#One)'  class='dotted '  d='M 408,935L 408,340' ><title>&#x1F517;  Foreign Key fk_list_reviews_users
+list_reviews ref users ( user_id -&gt; id )</title></path>
+<text x='411' y='933' transform='rotate(270 411,933)' class='relName'>user&#95;id</text>
+<!-- == Fk 'lists_fk_lists_users' == -->
+<path id='lists_fk_lists_users'  onmouseover="hghl(['lists_fk_lists_users','public.lists.user_id','public.users.id'])" onmouseout="uhghl(['lists_fk_lists_users','public.lists.user_id','public.users.id'])" transform='translate(8,0)' class='unhighlight' d='M 527,1241L 246,1241Q 238,1241 238,1232L 238,297Q 238,289 246,289L 255,289' >
+	<title>&#x1F517;  Foreign Key fk_lists_users
+lists ref users ( user_id -&gt; id )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#ZeroMore)' marker-end='url(#One)'  class='dotted '  d='M 527,1241L 246,1241Q 238,1241 238,1232L 238,297Q 238,289 246,289L 255,289' ><title>&#x1F517;  Foreign Key fk_lists_users
+lists ref users ( user_id -&gt; id )</title></path>
+<text x='490' y='1236' transform='rotate(0 490,1236)' class='relName'>user&#95;id</text>
+<!-- == Fk 'menu_menu_items_fk_menu_menu_items_menus' == -->
+<path id='menu_menu_items_fk_menu_menu_items_menus'  onmouseover="hghl(['menu_menu_items_fk_menu_menu_items_menus','public.menu_menu_items.menu','public.menus.id'])" onmouseout="uhghl(['menu_menu_items_fk_menu_menu_items_menus','public.menu_menu_items.menu','public.menus.id'])" transform='translate(8,0)' class='unhighlight' d='M 1513,748L 1513,552Q 1513,544 1521,544L 1861,544Q 1870,544 1870,535L 1870,255' >
+	<title>&#x1F517;  Foreign Key fk_menu_menu_items_menus
+menu_menu_items ref menus ( menu -&gt; id )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#ZeroMore)' marker-end='url(#One)'  class='dotted '  d='M 1513,748L 1513,552Q 1513,544 1521,544L 1861,544Q 1870,544 1870,535L 1870,255' ><title>&#x1F517;  Foreign Key fk_menu_menu_items_menus
+menu_menu_items ref menus ( menu -&gt; id )</title></path>
+<text x='1516' y='746' transform='rotate(270 1516,746)' class='relName'>menu</text>
+<!-- == Fk 'menu_menu_items_fk_menu_menu_items_menu_items' == -->
+<path id='menu_menu_items_fk_menu_menu_items_menu_items'  onmouseover="hghl(['menu_menu_items_fk_menu_menu_items_menu_items','public.menu_menu_items.menu_items','public.menu_items.id'])" onmouseout="uhghl(['menu_menu_items_fk_menu_menu_items_menu_items','public.menu_menu_items.menu_items','public.menu_items.id'])" transform='translate(8,0)' class='unhighlight' d='M 1360,765L 1300,765Q 1292,765 1292,756L 1292,654Q 1292,646 1283,646L 1275,646' >
+	<title>&#x1F517;  Foreign Key fk_menu_menu_items_menu_items
+menu_menu_items ref menu_items ( menu_items -&gt; id )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#ZeroMore)' marker-end='url(#One)'  class='dotted '  d='M 1360,765L 1300,765Q 1292,765 1292,756L 1292,654Q 1292,646 1283,646L 1275,646' ><title>&#x1F517;  Foreign Key fk_menu_menu_items_menu_items
+menu_menu_items ref menu_items ( menu_items -&gt; id )</title></path>
+<text x='1289' y='760' transform='rotate(0 1289,760)' class='relName'>menu&#95;items</text>
+<!-- == Fk 'menus_fk_menus_business' == -->
+<path id='menus_fk_menus_business'  onmouseover="hghl(['menus_fk_menus_business','public.menus.business_id','public.business.id'])" onmouseout="uhghl(['menus_fk_menus_business','public.menus.business_id','public.business.id'])" transform='translate(8,0)' class='unhighlight' d='M 1836,102L 1751,102' >
+	<title>&#x1F517;  Foreign Key fk_menus_business
+menus ref business ( business_id -&gt; id )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#ZeroMore)' marker-end='url(#One)'  class='dotted '  d='M 1836,102L 1751,102' ><title>&#x1F517;  Foreign Key fk_menus_business
+menus ref business ( business_id -&gt; id )</title></path>
+<text x='1770' y='97' transform='rotate(0 1770,97)' class='relName'>business&#95;id</text>
+<!-- == Fk 'menus_orders_fk_menus_orders_orders' == -->
+<path id='menus_orders_fk_menus_orders_orders'  onmouseover="hghl(['menus_orders_fk_menus_orders_orders','public.menus_orders.order_id','public.orders.id'])" onmouseout="uhghl(['menus_orders_fk_menus_orders_orders','public.menus_orders.order_id','public.orders.id'])" transform='translate(8,0)' class='unhighlight' d='M 1156,850L 1156,909Q 1156,918 1147,918L 212,918Q 204,918 204,926L 204,935' >
+	<title>&#x1F517;  Foreign Key fk_menus_orders_orders
+menus_orders ref orders ( order_id -&gt; id )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#ZeroMore)' marker-end='url(#One)'  class='dotted '  d='M 1156,850L 1156,909Q 1156,918 1147,918L 212,918Q 204,918 204,926L 204,935' ><title>&#x1F517;  Foreign Key fk_menus_orders_orders
+menus_orders ref orders ( order_id -&gt; id )</title></path>
+<text x='1169' y='852' transform='rotate(90 1169,852)' class='relName'>order&#95;id</text>
+<!-- == Fk 'menus_orders_fk_menus_orders_menu_items' == -->
+<path id='menus_orders_fk_menus_orders_menu_items'  onmouseover="hghl(['menus_orders_fk_menus_orders_menu_items','public.menus_orders.menu_item_id','public.menu_items.id'])" onmouseout="uhghl(['menus_orders_fk_menus_orders_menu_items','public.menus_orders.menu_item_id','public.menu_items.id'])" transform='translate(8,0)' class='unhighlight' d='M 1156,748L 1156,663' >
+	<title>&#x1F517;  Foreign Key fk_menus_orders_menu_items
+menus_orders ref menu_items ( menu_item_id -&gt; id )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#OneMore)' marker-end='url(#One)'    d='M 1156,748L 1156,663' ><title>&#x1F517;  Foreign Key fk_menus_orders_menu_items
+menus_orders ref menu_items ( menu_item_id -&gt; id )</title></path>
+<text x='1159' y='746' transform='rotate(270 1159,746)' class='relName'>menu&#95;item&#95;id</text>
+<!-- == Fk 'notification_channels_fk_notification_channels_users' == -->
+<path id='notification_channels_fk_notification_channels_users'  onmouseover="hghl(['notification_channels_fk_notification_channels_users','public.notification_channels.created_by','public.users.id'])" onmouseout="uhghl(['notification_channels_fk_notification_channels_users','public.notification_channels.created_by','public.users.id'])" transform='translate(8,0)' class='unhighlight' d='M 510,102L 425,102' >
+	<title>&#x1F517;  Foreign Key fk_notification_channels_users
+notification_channels ref users ( created_by -&gt; id )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#ZeroMore)' marker-end='url(#One)'  class='dotted '  d='M 510,102L 425,102' ><title>&#x1F517;  Foreign Key fk_notification_channels_users
+notification_channels ref users ( created_by -&gt; id )</title></path>
+<text x='448' y='97' transform='rotate(0 448,97)' class='relName'>created&#95;by</text>
+<!-- == Fk 'notification_subscribers_fk_notification_subscribers' == -->
+<path id='notification_subscribers_fk_notification_subscribers'  onmouseover="hghl(['notification_subscribers_fk_notification_subscribers','public.notification_subscribers.channel_id','public.notification_channels.id'])" onmouseout="uhghl(['notification_subscribers_fk_notification_subscribers','public.notification_subscribers.channel_id','public.notification_channels.id'])" transform='translate(8,0)' class='unhighlight' d='M 782,102L 697,102' >
+	<title>&#x1F517;  Foreign Key fk_notification_subscribers
+notification_subscribers ref notification_channels ( channel_id -&gt; id )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#ZeroMore)' marker-end='url(#One)'  class='dotted '  d='M 782,102L 697,102' ><title>&#x1F517;  Foreign Key fk_notification_subscribers
+notification_subscribers ref notification_channels ( channel_id -&gt; id )</title></path>
+<text x='722' y='97' transform='rotate(0 722,97)' class='relName'>channel&#95;id</text>
+<!-- == Fk 'notification_subscribers_fk_notification_subscribers_users' == -->
+<path id='notification_subscribers_fk_notification_subscribers_users'  onmouseover="hghl(['notification_subscribers_fk_notification_subscribers_users','public.notification_subscribers.user_id','public.users.id'])" onmouseout="uhghl(['notification_subscribers_fk_notification_subscribers_users','public.notification_subscribers.user_id','public.users.id'])" transform='translate(8,0)' class='unhighlight' d='M 782,85L 722,85Q 714,85 714,76L 714,59Q 714,51 705,51L 416,51Q 408,51 408,59L 408,68' >
+	<title>&#x1F517;  Foreign Key fk_notification_subscribers_users
+notification_subscribers ref users ( user_id -&gt; id )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#ZeroMore)' marker-end='url(#One)'  class='dotted '  d='M 782,85L 722,85Q 714,85 714,76L 714,59Q 714,51 705,51L 416,51Q 408,51 408,59L 408,68' ><title>&#x1F517;  Foreign Key fk_notification_subscribers_users
+notification_subscribers ref users ( user_id -&gt; id )</title></path>
+<text x='745' y='80' transform='rotate(0 745,80)' class='relName'>user&#95;id</text>
+<!-- == Fk 'order_review_fk_order_review_orders' == -->
+<path id='order_review_fk_order_review_orders'  onmouseover="hghl(['order_review_fk_order_review_orders','public.order_review.order_id','public.orders.id'])" onmouseout="uhghl(['order_review_fk_order_review_orders','public.order_review.order_id','public.orders.id'])" transform='translate(8,0)' class='unhighlight' d='M 306,1292L 212,1292Q 204,1292 204,1283L 204,1190' >
+	<title>&#x1F517;  Foreign Key fk_order_review_orders
+order_review ref orders ( order_id -&gt; id )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#OneMore)' marker-end='url(#One)'    d='M 306,1292L 212,1292Q 204,1292 204,1283L 204,1190' ><title>&#x1F517;  Foreign Key fk_order_review_orders
+order_review ref orders ( order_id -&gt; id )</title></path>
+<text x='261' y='1287' transform='rotate(0 261,1287)' class='relName'>order&#95;id</text>
+<!-- == Fk 'order_review_fk_order_review_reviews' == -->
+<path id='order_review_fk_order_review_reviews'  onmouseover="hghl(['order_review_fk_order_review_reviews','public.order_review.review_id','public.reviews.id'])" onmouseout="uhghl(['order_review_fk_order_review_reviews','public.order_review.review_id','public.reviews.id'])" transform='translate(8,0)' class='unhighlight' d='M 442,1428L 671,1428Q 680,1428 680,1419L 680,1096Q 680,1088 671,1088L 663,1088' >
+	<title>&#x1F517;  Foreign Key fk_order_review_reviews
+order_review ref reviews ( review_id -&gt; id )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#ZeroMore)' marker-end='url(#One)'  class='dotted '  d='M 442,1428L 671,1428Q 680,1428 680,1419L 680,1096Q 680,1088 671,1088L 663,1088' ><title>&#x1F517;  Foreign Key fk_order_review_reviews
+order_review ref reviews ( review_id -&gt; id )</title></path>
+<text x='452' y='1423' transform='rotate(0 452,1423)' class='relName'>review&#95;id</text>
+<!-- == Fk 'orders_fk_orders_users' == -->
+<path id='orders_fk_orders_users'  onmouseover="hghl(['orders_fk_orders_users','public.orders.user_id','public.users.id'])" onmouseout="uhghl(['orders_fk_orders_users','public.orders.user_id','public.users.id'])" transform='translate(8,0)' class='unhighlight' d='M 187,935L 187,280Q 187,272 195,272L 255,272' >
+	<title>&#x1F517;  Foreign Key fk_orders_users
+orders ref users ( user_id -&gt; id )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#OneMore)' marker-end='url(#One)'    d='M 187,935L 187,280Q 187,272 195,272L 255,272' ><title>&#x1F517;  Foreign Key fk_orders_users
+orders ref users ( user_id -&gt; id )</title></path>
+<text x='190' y='933' transform='rotate(270 190,933)' class='relName'>user&#95;id</text>
+<!-- == Fk 'orders_fk_orders_delivery_info' == -->
+<path id='orders_fk_orders_delivery_info'  onmouseover="hghl(['orders_fk_orders_delivery_info','public.orders.delivery_info','public.delivery_info.id'])" onmouseout="uhghl(['orders_fk_orders_delivery_info','public.orders.delivery_info','public.delivery_info.id'])" transform='translate(8,0)' class='unhighlight' d='M 221,1139L 1334,1139Q 1343,1139 1343,1130L 1343,501Q 1343,493 1351,493L 1360,493' >
+	<title>&#x1F517;  Foreign Key fk_orders_delivery_info
+orders ref delivery_info ( delivery_info -&gt; id )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#ZeroMore)' marker-end='url(#One)'  class='dotted '  d='M 221,1139L 1334,1139Q 1343,1139 1343,1130L 1343,501Q 1343,493 1351,493L 1360,493' ><title>&#x1F517;  Foreign Key fk_orders_delivery_info
+orders ref delivery_info ( delivery_info -&gt; id )</title></path>
+<text x='231' y='1134' transform='rotate(0 231,1134)' class='relName'>delivery&#95;info</text>
+<!-- == Fk 'user_roles_fk_user_roles_roles' == -->
+<path id='user_roles_fk_user_roles_roles'  onmouseover="hghl(['user_roles_fk_user_roles_roles','public.user_roles.role_id','public.roles.role_id'])" onmouseout="uhghl(['user_roles_fk_user_roles_roles','public.user_roles.role_id','public.roles.role_id'])" transform='translate(8,0)' class='unhighlight' d='M 289,527L 289,612' >
+	<title>&#x1F517;  Foreign Key fk_user_roles_roles
+user_roles ref roles ( role_id )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#OneMore)' marker-end='url(#One)'    d='M 289,527L 289,612' ><title>&#x1F517;  Foreign Key fk_user_roles_roles
+user_roles ref roles ( role_id )</title></path>
+<text x='302' y='529' transform='rotate(90 302,529)' class='relName'>role&#95;id</text>
+<!-- == Fk 'user_roles_fk_user_roles_users' == -->
+<path id='user_roles_fk_user_roles_users'  onmouseover="hghl(['user_roles_fk_user_roles_users','public.user_roles.user_id','public.users.id'])" onmouseout="uhghl(['user_roles_fk_user_roles_users','public.user_roles.user_id','public.users.id'])" transform='translate(8,0)' class='unhighlight' d='M 289,425L 289,340' >
+	<title>&#x1F517;  Foreign Key fk_user_roles_users
+user_roles ref users ( user_id -&gt; id )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#OneMore)' marker-end='url(#One)'    d='M 289,425L 289,340' ><title>&#x1F517;  Foreign Key fk_user_roles_users
+user_roles ref users ( user_id -&gt; id )</title></path>
+<text x='292' y='423' transform='rotate(270 292,423)' class='relName'>user&#95;id</text>
+<!-- == Fk 'users_fk_users_contact_info' == -->
+<path id='users_fk_users_contact_info'  onmouseover="hghl(['users_fk_users_contact_info','public.users.contact_info','public.contact_info.id'])" onmouseout="uhghl(['users_fk_users_contact_info','public.users.contact_info','public.contact_info.id'])" transform='translate(8,0)' class='unhighlight' d='M 425,272L 1402,272Q 1411,272 1411,263L 1411,255' >
+	<title>&#x1F517;  Foreign Key fk_users_contact_info
+users ref contact_info ( contact_info -&gt; id )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#ZeroMore)' marker-end='url(#One)'  class='dotted '  d='M 425,272L 1402,272Q 1411,272 1411,263L 1411,255' ><title>&#x1F517;  Foreign Key fk_users_contact_info
+users ref contact_info ( contact_info -&gt; id )</title></path>
+<text x='435' y='267' transform='rotate(0 435,267)' class='relName'>contact&#95;info</text>
+<!-- == Table 'analytics' == -->
+<rect id='depict_public&#46;analytics' class='entity' style='stroke:none;' x='527' y='434' width='119' height='153' rx='4' ry='4' />
+<path d='M 527 463 L 527 438 Q 527 434 531 434 L 642 434 Q 646 434 646 438 L 646 463 L527 463 ' style='fill:url(#tbg_BED3F4);stroke:none;' />
+<rect class='entity' x='527' y='434' width='119' height='153' rx='4' ry='4' style='fill:none;stroke:#E1E7F2'/>
+<text id='depict&#45;public&#46;analytics' x='550' y='453' class='tableHeader' style='fill:#27416D;'>analytics</text><title>Table public.analytics</title>  <use x='529' y='472' xlink:href='#nn'/><use x='529' y='471' xlink:href='#pk'><title>&#x1F511;  Pk pk_analytics ( id ) </title></use><text id='public&#46;analytics&#46;id' x='547' y='483' class='colPk'>id</text><title>&#10697;  id
+     * integer</title><text x='643' y='480' text-anchor='end' class='colType'>&#35;</text>  <use x='529' y='489' xlink:href='#nn'/><use x='529' y='488' xlink:href='#unq'><title>&#x1F50D;  Unq unq_analytics_device_info ( device_info ) </title></use><text id='public&#46;analytics&#46;device&#95;info' x='547' y='500' onmouseover="hghl(['device_info_fk_device_info_analytics','public.device_info.id'])" onmouseout="uhghl(['device_info_fk_device_info_analytics','public.device_info.id'])">device&#95;info</text><title>&#10697;  device_info
+     * integer
+ &#8601; device_info( device_info )</title><a xlink:href='#public.analytics.device_info'><use x='634' y='488' xlink:href='#ref'/><title>&#x1F517;  Referred by device_info ( id -&gt; device_info ) </title></a>
+  <text id='public&#46;analytics&#46;event&#95;code' x='547' y='517' onmouseover="hghl(['analytics_fk_analytics_analytics_events','public.analytics_events.event_code'])" onmouseout="uhghl(['analytics_fk_analytics_analytics_events','public.analytics_events.event_code'])">event&#95;code</text><title>&#10697;  event_code
+     varchar(6)
+ &#8599; analytics( event_code )</title><a xlink:href='#public.analytics.event_code'><use x='634' y='505' xlink:href='#fk'/><title>&#x1F517;  References analytics_events ( event_code ) </title></a>
+  <text id='public&#46;analytics&#46;created&#95;at' x='547' y='534'>created&#95;at</text><title>&#10697;  created_at
+     date default CURRENT_DATE</title><text x='643' y='531' text-anchor='end' class='colType'>d</text>  <text id='public&#46;analytics&#46;updated&#95;at' x='547' y='551'>updated&#95;at</text><title>&#10697;  updated_at
+     date</title><text x='643' y='548' text-anchor='end' class='colType'>d</text>  <text id='public&#46;analytics&#46;deleted&#95;at' x='547' y='568'>deleted&#95;at</text><title>&#10697;  deleted_at
+     date</title><text x='643' y='565' text-anchor='end' class='colType'>d</text>
+<!-- == Table 'analytics_events' == -->
+<rect id='depict_public&#46;analytics&#95;events' class='entity' style='stroke:none;' x='748' y='434' width='136' height='187' rx='4' ry='4' />
+<path d='M 748 463 L 748 438 Q 748 434 752 434 L 880 434 Q 884 434 884 438 L 884 463 L748 463 ' style='fill:url(#tbg_BED3F4);stroke:none;' />
+<rect class='entity' x='748' y='434' width='136' height='187' rx='4' ry='4' style='fill:none;stroke:#E1E7F2'/>
+<text id='depict&#45;public&#46;analytics&#95;events' x='752' y='453' class='tableHeader' style='fill:#27416D;'>analytics&#95;events</text><title>Table public.analytics_events
+ ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+      REPRESENT EVENTS WE WITH TO TRACK SYSTEM WIDE</title>  <use x='750' y='472' xlink:href='#nn'/><use x='750' y='471' xlink:href='#pk'><title>&#x1F511;  Pk pk_analytics_events ( id ) </title></use><text id='public&#46;analytics&#95;events&#46;id' x='768' y='483' class='colPk'>id</text><title>&#10697;  id
+     * integer</title><text x='881' y='480' text-anchor='end' class='colType'>&#35;</text>  <text id='public&#46;analytics&#95;events&#46;event&#95;name' x='768' y='500'>event&#95;name</text><title>&#10697;  event_name
+     varchar(20)</title><text x='881' y='497' text-anchor='end' class='colType'>t</text>  <use x='750' y='506' xlink:href='#nn'/><use x='750' y='505' xlink:href='#unq'><title>&#x1F50D;  Unq unq_analytics_events_event_code ( event_code ) </title></use><text id='public&#46;analytics&#95;events&#46;event&#95;code' x='768' y='517' onmouseover="hghl(['analytics_fk_analytics_analytics_events','public.analytics.event_code'])" onmouseout="uhghl(['analytics_fk_analytics_analytics_events','public.analytics.event_code'])">event&#95;code</text><title>&#10697;  event_code
+     * varchar(6)
+ &#8601; analytics( event_code )
+ ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+      SPECIFICALLY USED FOR LOGING AND MIGHT LATER BE USED FOR EXAMPLE TO CREATE PERSONALIZED DASHES</title><a xlink:href='#public.analytics_events.event_code'><use x='872' y='505' xlink:href='#ref'/><title>&#x1F517;  Referred by analytics ( event_code ) </title></a>
+  <text id='public&#46;analytics&#95;events&#46;event&#95;for' x='768' y='534'>event&#95;for</text><title>&#10697;  event_for
+     varchar(120)
+ ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+      PURPOSE OF EVENT</title><text x='881' y='531' text-anchor='end' class='colType'>t</text>  <text id='public&#46;analytics&#95;events&#46;tags' x='768' y='551'>tags</text><title>&#10697;  tags
+     varchar[]</title><text x='881' y='548' text-anchor='end' class='colType'>&#91;&#93;</text>  <text id='public&#46;analytics&#95;events&#46;created&#95;at' x='768' y='568'>created&#95;at</text><title>&#10697;  created_at
+     date default CURRENT_DATE</title><text x='881' y='565' text-anchor='end' class='colType'>d</text>  <text id='public&#46;analytics&#95;events&#46;updated&#95;at' x='768' y='585'>updated&#95;at</text><title>&#10697;  updated_at
+     date</title><text x='881' y='582' text-anchor='end' class='colType'>d</text>  <text id='public&#46;analytics&#95;events&#46;deleted&#95;at' x='768' y='602'>deleted&#95;at</text><title>&#10697;  deleted_at
+     date</title><text x='881' y='599' text-anchor='end' class='colType'>d</text>
+<!-- == Table 'business' == -->
+<rect id='depict_public&#46;business' class='entity' style='stroke:none;' x='1615' y='77' width='136' height='187' rx='4' ry='4' />
+<path d='M 1615 106 L 1615 81 Q 1615 77 1619 77 L 1747 77 Q 1751 77 1751 81 L 1751 106 L1615 106 ' style='fill:url(#tbg_C7F4BE);stroke:none;' />
+<rect class='entity' x='1615' y='77' width='136' height='187' rx='4' ry='4' style='fill:none;stroke:#E3F2E1'/>
+<text id='depict&#45;public&#46;business' x='1648' y='96' class='tableHeader' style='fill:#326D27;'>business</text><title>Table public.business</title>  <use x='1617' y='115' xlink:href='#nn'/><use x='1617' y='114' xlink:href='#pk'><title>&#x1F511;  Pk pk_business ( id ) </title></use><text id='public&#46;business&#46;id' x='1635' y='126' onmouseover="hghl(['menus_fk_menus_business','public.menus.business_id'])" onmouseout="uhghl(['menus_fk_menus_business','public.menus.business_id'])" class='colPk'>id</text><title>&#10697;  id
+     * integer
+ &#8601; menus( id )</title><a xlink:href='#public.business.id'><use x='1739' y='114' xlink:href='#ref'/><title>&#x1F517;  Referred by menus ( business_id -&gt; id ) </title></a>
+  <use x='1617' y='132' xlink:href='#nn'/><text id='public&#46;business&#46;name' x='1635' y='143'>name</text><title>&#10697;  name
+     * varchar(100)</title><text x='1748' y='140' text-anchor='end' class='colType'>t</text>  <use x='1617' y='149' xlink:href='#nn'/><text id='public&#46;business&#46;location' x='1635' y='160'>location</text><title>&#10697;  location
+     * varchar</title><text x='1748' y='157' text-anchor='end' class='colType'>t</text>  <text id='public&#46;business&#46;contact&#95;info' x='1635' y='177' onmouseover="hghl(['business_fk_business_contact_info','public.contact_info.id'])" onmouseout="uhghl(['business_fk_business_contact_info','public.contact_info.id'])">contact&#95;info</text><title>&#10697;  contact_info
+     integer
+ &#8599; business( id )</title><a xlink:href='#public.business.contact_info'><use x='1739' y='165' xlink:href='#fk'/><title>&#x1F517;  References contact_info ( contact_info -&gt; id ) </title></a>
+  <text id='public&#46;business&#46;profile&#95;id' x='1635' y='194' onmouseover="hghl(['business_fk_business_user','public.users.id'])" onmouseout="uhghl(['business_fk_business_user','public.users.id'])">profile&#95;id</text><title>&#10697;  profile_id
+     integer
+ &#8599; business( id )</title><a xlink:href='#public.business.profile_id'><use x='1739' y='182' xlink:href='#fk'/><title>&#x1F517;  References users ( profile_id -&gt; id ) </title></a>
+  <text id='public&#46;business&#46;created&#95;at' x='1635' y='211'>created&#95;at</text><title>&#10697;  created_at
+     date default CURRENT_DATE</title><text x='1748' y='208' text-anchor='end' class='colType'>d</text>  <text id='public&#46;business&#46;updated&#95;at' x='1635' y='228'>updated&#95;at</text><title>&#10697;  updated_at
+     date</title><text x='1748' y='225' text-anchor='end' class='colType'>d</text>  <text id='public&#46;business&#46;deleted&#95;at' x='1635' y='245'>deleted&#95;at</text><title>&#10697;  deleted_at
+     date</title><text x='1748' y='242' text-anchor='end' class='colType'>d</text>
+<!-- == Table 'contact_info' == -->
+<rect id='depict_public&#46;contact&#95;info' class='entity' style='stroke:none;' x='1377' y='77' width='136' height='170' rx='4' ry='4' />
+<path d='M 1377 106 L 1377 81 Q 1377 77 1381 77 L 1509 77 Q 1513 77 1513 81 L 1513 106 L1377 106 ' style='fill:url(#tbg_C7F4BE);stroke:none;' />
+<rect class='entity' x='1377' y='77' width='136' height='170' rx='4' ry='4' style='fill:none;stroke:#E3F2E1'/>
+<text id='depict&#45;public&#46;contact&#95;info' x='1396' y='96' class='tableHeader' style='fill:#326D27;'>contact&#95;info</text><title>Table public.contact_info
+ ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+      REPRESENTS CONTACT INFORMATION READY FOR ANY ENTITY THAT MIGHT NEED IT</title>  <use x='1379' y='115' xlink:href='#nn'/><use x='1379' y='114' xlink:href='#pk'><title>&#x1F511;  Pk pk_contact_info ( id ) </title></use><text id='public&#46;contact&#95;info&#46;id' x='1397' y='126' onmouseover="hghl(['business_fk_business_contact_info','public.business.contact_info','delivery_info_fk_delivery_info_contact_info','public.delivery_info.contact_info','users_fk_users_contact_info','public.users.contact_info'])" onmouseout="uhghl(['business_fk_business_contact_info','public.business.contact_info','delivery_info_fk_delivery_info_contact_info','public.delivery_info.contact_info','users_fk_users_contact_info','public.users.contact_info'])" class='colPk'>id</text><title>&#10697;  id
+     * integer
+ &#8601; business( id )
+ &#8601; delivery_info( id )
+ &#8601; users( id )</title><a xlink:href='#public.contact_info.id'><use x='1501' y='114' xlink:href='#ref'/><title>&#x1F517;  Referred by business ( contact_info -&gt; id ) 
+Referred by delivery_info ( contact_info -&gt; id ) 
+Referred by users ( contact_info -&gt; id ) </title></a>
+  <use x='1379' y='132' xlink:href='#nn'/><text id='public&#46;contact&#95;info&#46;location&#95;name' x='1397' y='143'>location&#95;name</text><title>&#10697;  location_name
+     * varchar(100)</title><text x='1510' y='140' text-anchor='end' class='colType'>t</text>  <text id='public&#46;contact&#95;info&#46;zip&#95;code' x='1397' y='160'>zip&#95;code</text><title>&#10697;  zip_code
+     varchar</title><text x='1510' y='157' text-anchor='end' class='colType'>t</text>  <text id='public&#46;contact&#95;info&#46;lat&#95;lng' x='1397' y='177'>lat&#95;lng</text><title>&#10697;  lat_lng
+     jsonb</title>  <text id='public&#46;contact&#95;info&#46;created&#95;at' x='1397' y='194'>created&#95;at</text><title>&#10697;  created_at
+     date default CURRENT_DATE</title><text x='1510' y='191' text-anchor='end' class='colType'>d</text>  <text id='public&#46;contact&#95;info&#46;updated&#95;at' x='1397' y='211'>updated&#95;at</text><title>&#10697;  updated_at
+     date</title><text x='1510' y='208' text-anchor='end' class='colType'>d</text>  <text id='public&#46;contact&#95;info&#46;deleted&#95;at' x='1397' y='228'>deleted&#95;at</text><title>&#10697;  deleted_at
+     date</title><text x='1510' y='225' text-anchor='end' class='colType'>d</text>
+<!-- == Table 'delivery_info' == -->
+<rect id='depict_public&#46;delivery&#95;info' class='entity' style='stroke:none;' x='1377' y='349' width='136' height='170' rx='4' ry='4' />
+<path d='M 1377 378 L 1377 353 Q 1377 349 1381 349 L 1509 349 Q 1513 349 1513 353 L 1513 378 L1377 378 ' style='fill:url(#tbg_C7F4BE);stroke:none;' />
+<rect class='entity' x='1377' y='349' width='136' height='170' rx='4' ry='4' style='fill:none;stroke:#E3F2E1'/>
+<text id='depict&#45;public&#46;delivery&#95;info' x='1395' y='368' class='tableHeader' style='fill:#326D27;'>delivery&#95;info</text><title>Table public.delivery_info</title>  <text id='public&#46;delivery&#95;info&#46;user&#95;id' x='1397' y='398' onmouseover="hghl(['delivery_info_fk_delivery_info_users','public.users.id'])" onmouseout="uhghl(['delivery_info_fk_delivery_info_users','public.users.id'])">user&#95;id</text><title>&#10697;  user_id
+     integer
+ &#8599; delivery_info( id )</title><a xlink:href='#public.delivery_info.user_id'><use x='1501' y='386' xlink:href='#fk'/><title>&#x1F517;  References users ( user_id -&gt; id ) </title></a>
+  <use x='1379' y='404' xlink:href='#nn'/><use x='1379' y='403' xlink:href='#pk'><title>&#x1F511;  Pk pk_delivery_info ( id ) </title></use><text id='public&#46;delivery&#95;info&#46;id' x='1397' y='415' onmouseover="hghl(['orders_fk_orders_delivery_info','public.orders.delivery_info'])" onmouseout="uhghl(['orders_fk_orders_delivery_info','public.orders.delivery_info'])" class='colPk'>id</text><title>&#10697;  id
+     * integer
+ &#8601; orders( id )</title><a xlink:href='#public.delivery_info.id'><use x='1501' y='403' xlink:href='#ref'/><title>&#x1F517;  Referred by orders ( delivery_info -&gt; id ) </title></a>
+  <text id='public&#46;delivery&#95;info&#46;contact&#95;info' x='1397' y='432' onmouseover="hghl(['delivery_info_fk_delivery_info_contact_info','public.contact_info.id'])" onmouseout="uhghl(['delivery_info_fk_delivery_info_contact_info','public.contact_info.id'])">contact&#95;info</text><title>&#10697;  contact_info
+     integer
+ &#8599; delivery_info( id )</title><a xlink:href='#public.delivery_info.contact_info'><use x='1501' y='420' xlink:href='#fk'/><title>&#x1F517;  References contact_info ( contact_info -&gt; id ) </title></a>
+  <text id='public&#46;delivery&#95;info&#46;is&#95;public' x='1397' y='449'>is&#95;public</text><title>&#10697;  is_public
+     bit</title><text x='1510' y='446' text-anchor='end' class='colType'>b</text>  <text id='public&#46;delivery&#95;info&#46;created&#95;at' x='1397' y='466'>created&#95;at</text><title>&#10697;  created_at
+     date default CURRENT_DATE</title><text x='1510' y='463' text-anchor='end' class='colType'>d</text>  <text id='public&#46;delivery&#95;info&#46;updated&#95;at' x='1397' y='483'>updated&#95;at</text><title>&#10697;  updated_at
+     date</title><text x='1510' y='480' text-anchor='end' class='colType'>d</text>  <text id='public&#46;delivery&#95;info&#46;deleted&#95;at' x='1397' y='500'>deleted&#95;at</text><title>&#10697;  deleted_at
+     date</title><text x='1510' y='497' text-anchor='end' class='colType'>d</text>
+<!-- == Table 'device_info' == -->
+<rect id='depict_public&#46;device&#95;info' class='entity' style='stroke:none;' x='51' y='434' width='119' height='204' rx='4' ry='4' />
+<path d='M 51 463 L 51 438 Q 51 434 55 434 L 166 434 Q 170 434 170 438 L 170 463 L51 463 ' style='fill:url(#tbg_BED3F4);stroke:none;' />
+<rect class='entity' x='51' y='434' width='119' height='204' rx='4' ry='4' style='fill:none;stroke:#E1E7F2'/>
+<text id='depict&#45;public&#46;device&#95;info' x='66' y='453' class='tableHeader' style='fill:#27416D;'>device&#95;info</text><title>Table public.device_info</title>  <use x='53' y='472' xlink:href='#nn'/><use x='53' y='471' xlink:href='#pk'><title>&#x1F511;  Pk pk_device_info ( id ) </title></use><text id='public&#46;device&#95;info&#46;id' x='71' y='483' onmouseover="hghl(['device_info_fk_device_info_analytics','public.analytics.device_info'])" onmouseout="uhghl(['device_info_fk_device_info_analytics','public.analytics.device_info'])" class='colPk'>id</text><title>&#10697;  id
+     * integer
+ &#8599; device_info( device_info )</title><a xlink:href='#public.device_info.id'><use x='158' y='471' xlink:href='#fk'/><title>&#x1F517;  References analytics ( id -&gt; device_info ) </title></a>
+  <use x='53' y='489' xlink:href='#nn'/><use x='53' y='488' xlink:href='#unq'><title>&#x1F50D;  Unq unq_device_info_user_id ( user_id ) </title></use><text id='public&#46;device&#95;info&#46;user&#95;id' x='71' y='500' onmouseover="hghl(['device_info_fk_device_info_users','public.users.id'])" onmouseout="uhghl(['device_info_fk_device_info_users','public.users.id'])">user&#95;id</text><title>&#10697;  user_id
+     * integer
+ &#8599; device_info( id )</title><a xlink:href='#public.device_info.user_id'><use x='158' y='488' xlink:href='#fk'/><title>&#x1F517;  References users ( user_id -&gt; id ) </title></a>
+  <text id='public&#46;device&#95;info&#46;name' x='71' y='517'>name</text><title>&#10697;  name
+     varchar(100)</title><text x='167' y='514' text-anchor='end' class='colType'>t</text>  <text id='public&#46;device&#95;info&#46;model' x='71' y='534'>model</text><title>&#10697;  model
+     varchar</title><text x='167' y='531' text-anchor='end' class='colType'>t</text>  <text id='public&#46;device&#95;info&#46;meta' x='71' y='551'>meta</text><title>&#10697;  meta
+     jsonb</title>  <text id='public&#46;device&#95;info&#46;ip&#95;adress' x='71' y='568'>ip&#95;adress</text><title>&#10697;  ip_adress
+     varchar</title><text x='167' y='565' text-anchor='end' class='colType'>t</text>  <text id='public&#46;device&#95;info&#46;created&#95;at' x='71' y='585'>created&#95;at</text><title>&#10697;  created_at
+     date default CURRENT_DATE</title><text x='167' y='582' text-anchor='end' class='colType'>d</text>  <text id='public&#46;device&#95;info&#46;updated&#95;at' x='71' y='602'>updated&#95;at</text><title>&#10697;  updated_at
+     date</title><text x='167' y='599' text-anchor='end' class='colType'>d</text>  <text id='public&#46;device&#95;info&#46;deleted&#95;at' x='71' y='619'>deleted&#95;at</text><title>&#10697;  deleted_at
+     date</title><text x='167' y='616' text-anchor='end' class='colType'>d</text>
+<!-- == Table 'list_reviews' == -->
+<rect id='depict_public&#46;list&#95;reviews' class='entity' style='stroke:none;' x='323' y='944' width='119' height='170' rx='4' ry='4' />
+<path d='M 323 973 L 323 948 Q 323 944 327 944 L 438 944 Q 442 944 442 948 L 442 973 L323 973 ' style='fill:url(#tbg_F4DDBE);stroke:none;' />
+<rect class='entity' x='323' y='944' width='119' height='170' rx='4' ry='4' style='fill:none;stroke:#F2EAE1'/>
+<text id='depict&#45;public&#46;list&#95;reviews' x='336' y='963' class='tableHeader' style='fill:#6D4E27;'>list&#95;reviews</text><title>Table public.list_reviews</title>  <use x='325' y='982' xlink:href='#nn'/><use x='325' y='981' xlink:href='#pk'><title>&#x1F511;  Pk pk_list_reviews ( id ) </title></use><text id='public&#46;list&#95;reviews&#46;id' x='343' y='993' class='colPk'>id</text><title>&#10697;  id
+     * integer</title><text x='439' y='990' text-anchor='end' class='colType'>&#35;</text>  <use x='325' y='999' xlink:href='#nn'/><text id='public&#46;list&#95;reviews&#46;list&#95;id' x='343' y='1010' onmouseover="hghl(['list_reviews_fk_list_reviews_lists','public.lists.id'])" onmouseout="uhghl(['list_reviews_fk_list_reviews_lists','public.lists.id'])">list&#95;id</text><title>&#10697;  list_id
+     * integer
+ &#8599; list_reviews( id )</title><a xlink:href='#public.list_reviews.list_id'><use x='430' y='998' xlink:href='#fk'/><title>&#x1F517;  References lists ( list_id -&gt; id ) </title></a>
+  <use x='325' y='1016' xlink:href='#nn'/><text id='public&#46;list&#95;reviews&#46;review&#95;id' x='343' y='1027' onmouseover="hghl(['list_reviews_fk_list_reviews_reviews','public.reviews.id'])" onmouseout="uhghl(['list_reviews_fk_list_reviews_reviews','public.reviews.id'])">review&#95;id</text><title>&#10697;  review_id
+     * integer
+ &#8599; list_reviews( id )</title><a xlink:href='#public.list_reviews.review_id'><use x='430' y='1015' xlink:href='#fk'/><title>&#x1F517;  References reviews ( review_id -&gt; id ) </title></a>
+  <text id='public&#46;list&#95;reviews&#46;user&#95;id' x='343' y='1044' onmouseover="hghl(['list_reviews_fk_list_reviews_users','public.users.id'])" onmouseout="uhghl(['list_reviews_fk_list_reviews_users','public.users.id'])">user&#95;id</text><title>&#10697;  user_id
+     integer
+ &#8599; list_reviews( id )</title><a xlink:href='#public.list_reviews.user_id'><use x='430' y='1032' xlink:href='#fk'/><title>&#x1F517;  References users ( user_id -&gt; id ) </title></a>
+  <text id='public&#46;list&#95;reviews&#46;created&#95;at' x='343' y='1061'>created&#95;at</text><title>&#10697;  created_at
+     date default CURRENT_DATE</title><text x='439' y='1058' text-anchor='end' class='colType'>d</text>  <text id='public&#46;list&#95;reviews&#46;updated&#95;at' x='343' y='1078'>updated&#95;at</text><title>&#10697;  updated_at
+     date</title><text x='439' y='1075' text-anchor='end' class='colType'>d</text>  <text id='public&#46;list&#95;reviews&#46;deleted&#95;at' x='343' y='1095'>deleted&#95;at</text><title>&#10697;  deleted_at
+     date</title><text x='439' y='1092' text-anchor='end' class='colType'>d</text>
+<!-- == Table 'lists' == -->
+<rect id='depict_public&#46;lists' class='entity' style='stroke:none;' x='544' y='1216' width='119' height='187' rx='4' ry='4' />
+<path d='M 544 1245 L 544 1220 Q 544 1216 548 1216 L 659 1216 Q 663 1216 663 1220 L 663 1245 L544 1245 ' style='fill:url(#tbg_F4DDBE);stroke:none;' />
+<rect class='entity' x='544' y='1216' width='119' height='187' rx='4' ry='4' style='fill:none;stroke:#F2EAE1'/>
+<text id='depict&#45;public&#46;lists' x='585' y='1235' class='tableHeader' style='fill:#6D4E27;'>lists</text><title>Table public.lists</title>  <use x='546' y='1254' xlink:href='#nn'/><use x='546' y='1253' xlink:href='#pk'><title>&#x1F511;  Pk pk_lists ( id ) </title></use><text id='public&#46;lists&#46;id' x='564' y='1265' onmouseover="hghl(['list_reviews_fk_list_reviews_lists','public.list_reviews.list_id'])" onmouseout="uhghl(['list_reviews_fk_list_reviews_lists','public.list_reviews.list_id'])" class='colPk'>id</text><title>&#10697;  id
+     * integer
+ &#8601; list_reviews( id )</title><a xlink:href='#public.lists.id'><use x='651' y='1253' xlink:href='#ref'/><title>&#x1F517;  Referred by list_reviews ( list_id -&gt; id ) </title></a>
+  <text id='public&#46;lists&#46;name' x='564' y='1282'>name</text><title>&#10697;  name
+     varchar(100)</title><text x='660' y='1279' text-anchor='end' class='colType'>t</text>  <text id='public&#46;lists&#46;user&#95;id' x='564' y='1299' onmouseover="hghl(['lists_fk_lists_users','public.users.id'])" onmouseout="uhghl(['lists_fk_lists_users','public.users.id'])">user&#95;id</text><title>&#10697;  user_id
+     integer
+ &#8599; lists( id )</title><a xlink:href='#public.lists.user_id'><use x='651' y='1287' xlink:href='#fk'/><title>&#x1F517;  References users ( user_id -&gt; id ) </title></a>
+  <text id='public&#46;lists&#46;meta' x='564' y='1316'>meta</text><title>&#10697;  meta
+     jsonb</title>  <text id='public&#46;lists&#46;is&#95;public' x='564' y='1333'>is&#95;public</text><title>&#10697;  is_public
+     bit</title><text x='660' y='1330' text-anchor='end' class='colType'>b</text>  <text id='public&#46;lists&#46;created&#95;at' x='564' y='1350'>created&#95;at</text><title>&#10697;  created_at
+     date default CURRENT_DATE</title><text x='660' y='1347' text-anchor='end' class='colType'>d</text>  <text id='public&#46;lists&#46;updated&#95;at' x='564' y='1367'>updated&#95;at</text><title>&#10697;  updated_at
+     date</title><text x='660' y='1364' text-anchor='end' class='colType'>d</text>  <text id='public&#46;lists&#46;deleted&#95;at' x='564' y='1384'>deleted&#95;at</text><title>&#10697;  deleted_at
+     date</title><text x='660' y='1381' text-anchor='end' class='colType'>d</text>
+<!-- == Table 'menu_items' == -->
+<rect id='depict_public&#46;menu&#95;items' class='entity' style='stroke:none;' x='1139' y='349' width='136' height='306' rx='4' ry='4' />
+<path d='M 1139 378 L 1139 353 Q 1139 349 1143 349 L 1271 349 Q 1275 349 1275 353 L 1275 378 L1139 378 ' style='fill:url(#tbg_C7F4BE);stroke:none;' />
+<rect class='entity' x='1139' y='349' width='136' height='306' rx='4' ry='4' style='fill:none;stroke:#E3F2E1'/>
+<text id='depict&#45;public&#46;menu&#95;items' x='1159' y='368' class='tableHeader' style='fill:#326D27;'>menu&#95;items</text><title>Table public.menu_items
+ ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+      MENU ITEMS ENTITY</title>  <use x='1141' y='387' xlink:href='#nn'/><use x='1141' y='386' xlink:href='#pk'><title>&#x1F511;  Pk pk_menu_items ( id ) </title></use><text id='public&#46;menu&#95;items&#46;id' x='1159' y='398' onmouseover="hghl(['menu_menu_items_fk_menu_menu_items_menu_items','public.menu_menu_items.menu_items','menus_orders_fk_menus_orders_menu_items','public.menus_orders.menu_item_id'])" onmouseout="uhghl(['menu_menu_items_fk_menu_menu_items_menu_items','public.menu_menu_items.menu_items','menus_orders_fk_menus_orders_menu_items','public.menus_orders.menu_item_id'])" class='colPk'>id</text><title>&#10697;  id
+     * integer
+ &#8601; menu_menu_items( id )
+ &#8601; menus_orders( id )</title><a xlink:href='#public.menu_items.id'><use x='1263' y='386' xlink:href='#ref'/><title>&#x1F517;  Referred by menu_menu_items ( menu_items -&gt; id ) 
+Referred by menus_orders ( menu_item_id -&gt; id ) </title></a>
+  <text id='public&#46;menu&#95;items&#46;contents' x='1159' y='415'>contents</text><title>&#10697;  contents
+     json[]</title><text x='1272' y='412' text-anchor='end' class='colType'>&#91;&#93;</text>  <text id='public&#46;menu&#95;items&#46;images' x='1159' y='432'>images</text><title>&#10697;  images
+     json</title>  <text id='public&#46;menu&#95;items&#46;price' x='1159' y='449'>price</text><title>&#10697;  price
+     double precision</title><text x='1272' y='446' text-anchor='end' class='colType'>&#35;</text>  <text id='public&#46;menu&#95;items&#46;tags' x='1159' y='466'>tags</text><title>&#10697;  tags
+     varchar[]</title><text x='1272' y='463' text-anchor='end' class='colType'>&#91;&#93;</text>  <text id='public&#46;menu&#95;items&#46;unit&#95;at' x='1159' y='483'>unit&#95;at</text><title>&#10697;  unit_at
+     varchar(6)</title><text x='1272' y='480' text-anchor='end' class='colType'>t</text>  <text id='public&#46;menu&#95;items&#46;unit&#95;scale' x='1159' y='500'>unit&#95;scale</text><title>&#10697;  unit_scale
+     varchar</title><text x='1272' y='497' text-anchor='end' class='colType'>t</text>  <text id='public&#46;menu&#95;items&#46;unit&#95;symbol' x='1159' y='517'>unit&#95;symbol</text><title>&#10697;  unit_symbol
+     varchar[]</title><text x='1272' y='514' text-anchor='end' class='colType'>&#91;&#93;</text>  <text id='public&#46;menu&#95;items&#46;serving&#95;type' x='1159' y='534'>serving&#95;type</text><title>&#10697;  serving_type
+     varchar</title><text x='1272' y='531' text-anchor='end' class='colType'>t</text>  <text id='public&#46;menu&#95;items&#46;discounted' x='1159' y='551'>discounted</text><title>&#10697;  discounted
+     bit</title><text x='1272' y='548' text-anchor='end' class='colType'>b</text>  <text id='public&#46;menu&#95;items&#46;total&#95;kcal' x='1159' y='568'>total&#95;kcal</text><title>&#10697;  total_kcal
+     double precision</title><text x='1272' y='565' text-anchor='end' class='colType'>&#35;</text>  <text id='public&#46;menu&#95;items&#46;meta' x='1159' y='585'>meta</text><title>&#10697;  meta
+     jsonb</title>  <text id='public&#46;menu&#95;items&#46;created&#95;at' x='1159' y='602'>created&#95;at</text><title>&#10697;  created_at
+     date default CURRENT_DATE</title><text x='1272' y='599' text-anchor='end' class='colType'>d</text>  <text id='public&#46;menu&#95;items&#46;updated&#95;at' x='1159' y='619'>updated&#95;at</text><title>&#10697;  updated_at
+     date</title><text x='1272' y='616' text-anchor='end' class='colType'>d</text>  <text id='public&#46;menu&#95;items&#46;deleted&#95;at' x='1159' y='636'>deleted&#95;at</text><title>&#10697;  deleted_at
+     date</title><text x='1272' y='633' text-anchor='end' class='colType'>d</text>
+<!-- == Table 'menu_menu_items' == -->
+<rect id='depict_public&#46;menu&#95;menu&#95;items' class='entity' style='stroke:none;' x='1377' y='757' width='153' height='85' rx='4' ry='4' />
+<path d='M 1377 786 L 1377 761 Q 1377 757 1381 757 L 1526 757 Q 1530 757 1530 761 L 1530 786 L1377 786 ' style='fill:url(#tbg_C7F4BE);stroke:none;' />
+<rect class='entity' x='1377' y='757' width='153' height='85' rx='4' ry='4' style='fill:none;stroke:#E3F2E1'/>
+<text id='depict&#45;public&#46;menu&#95;menu&#95;items' x='1381' y='776' class='tableHeader' style='fill:#326D27;'>menu&#95;menu&#95;items</text><title>Table public.menu_menu_items</title>  <text id='public&#46;menu&#95;menu&#95;items&#46;menu' x='1397' y='806' onmouseover="hghl(['menu_menu_items_fk_menu_menu_items_menus','public.menus.id'])" onmouseout="uhghl(['menu_menu_items_fk_menu_menu_items_menus','public.menus.id'])">menu</text><title>&#10697;  menu
+     integer
+ &#8599; menu_menu_items( id )</title><a xlink:href='#public.menu_menu_items.menu'><use x='1518' y='794' xlink:href='#fk'/><title>&#x1F517;  References menus ( menu -&gt; id ) </title></a>
+  <text id='public&#46;menu&#95;menu&#95;items&#46;menu&#95;items' x='1397' y='823' onmouseover="hghl(['menu_menu_items_fk_menu_menu_items_menu_items','public.menu_items.id'])" onmouseout="uhghl(['menu_menu_items_fk_menu_menu_items_menu_items','public.menu_items.id'])">menu&#95;items</text><title>&#10697;  menu_items
+     integer
+ &#8599; menu_menu_items( id )</title><a xlink:href='#public.menu_menu_items.menu_items'><use x='1518' y='811' xlink:href='#fk'/><title>&#x1F517;  References menu_items ( menu_items -&gt; id ) </title></a>
+
+<!-- == Table 'menus' == -->
+<rect id='depict_public&#46;menus' class='entity' style='stroke:none;' x='1853' y='77' width='119' height='170' rx='4' ry='4' />
+<path d='M 1853 106 L 1853 81 Q 1853 77 1857 77 L 1968 77 Q 1972 77 1972 81 L 1972 106 L1853 106 ' style='fill:url(#tbg_C7F4BE);stroke:none;' />
+<rect class='entity' x='1853' y='77' width='119' height='170' rx='4' ry='4' style='fill:none;stroke:#E3F2E1'/>
+<text id='depict&#45;public&#46;menus' x='1884' y='96' class='tableHeader' style='fill:#326D27;'>menus</text><title>Table public.menus</title>  <use x='1855' y='115' xlink:href='#nn'/><use x='1855' y='114' xlink:href='#pk'><title>&#x1F511;  Pk pk_menus ( id ) </title></use><text id='public&#46;menus&#46;id' x='1873' y='126' onmouseover="hghl(['menu_menu_items_fk_menu_menu_items_menus','public.menu_menu_items.menu'])" onmouseout="uhghl(['menu_menu_items_fk_menu_menu_items_menus','public.menu_menu_items.menu'])" class='colPk'>id</text><title>&#10697;  id
+     * integer
+ &#8601; menu_menu_items( id )</title><a xlink:href='#public.menus.id'><use x='1960' y='114' xlink:href='#ref'/><title>&#x1F517;  Referred by menu_menu_items ( menu -&gt; id ) </title></a>
+  <text id='public&#46;menus&#46;title' x='1873' y='143'>title</text><title>&#10697;  title
+     varchar</title><text x='1969' y='140' text-anchor='end' class='colType'>t</text>  <text id='public&#46;menus&#46;business&#95;id' x='1873' y='160' onmouseover="hghl(['menus_fk_menus_business','public.business.id'])" onmouseout="uhghl(['menus_fk_menus_business','public.business.id'])">business&#95;id</text><title>&#10697;  business_id
+     integer
+ &#8599; menus( id )</title><a xlink:href='#public.menus.business_id'><use x='1960' y='148' xlink:href='#fk'/><title>&#x1F517;  References business ( business_id -&gt; id ) </title></a>
+  <text id='public&#46;menus&#46;created&#95;at' x='1873' y='177'>created&#95;at</text><title>&#10697;  created_at
+     date default CURRENT_DATE</title><text x='1969' y='174' text-anchor='end' class='colType'>d</text>  <text id='public&#46;menus&#46;updated&#95;at' x='1873' y='194'>updated&#95;at</text><title>&#10697;  updated_at
+     date</title><text x='1969' y='191' text-anchor='end' class='colType'>d</text>  <text id='public&#46;menus&#46;delete&#95;at' x='1873' y='211'>delete&#95;at</text><title>&#10697;  delete_at
+     date</title><text x='1969' y='208' text-anchor='end' class='colType'>d</text>  <text id='public&#46;menus&#46;tags' x='1873' y='228'>tags</text><title>&#10697;  tags
+     varchar[]</title><text x='1969' y='225' text-anchor='end' class='colType'>&#91;&#93;</text>
+<!-- == Table 'menus_orders' == -->
+<rect id='depict_public&#46;menus&#95;orders' class='entity' style='stroke:none;' x='1139' y='757' width='136' height='85' rx='4' ry='4' />
+<path d='M 1139 786 L 1139 761 Q 1139 757 1143 757 L 1271 757 Q 1275 757 1275 761 L 1275 786 L1139 786 ' style='fill:url(#tbg_C7F4BE);stroke:none;' />
+<rect class='entity' x='1139' y='757' width='136' height='85' rx='4' ry='4' style='fill:none;stroke:#E3F2E1'/>
+<text id='depict&#45;public&#46;menus&#95;orders' x='1152' y='776' class='tableHeader' style='fill:#326D27;'>menus&#95;orders</text><title>Table public.menus_orders</title>  <use x='1141' y='795' xlink:href='#nn'/><text id='public&#46;menus&#95;orders&#46;menu&#95;item&#95;id' x='1159' y='806' onmouseover="hghl(['menus_orders_fk_menus_orders_menu_items','public.menu_items.id'])" onmouseout="uhghl(['menus_orders_fk_menus_orders_menu_items','public.menu_items.id'])">menu&#95;item&#95;id</text><title>&#10697;  menu_item_id
+     * integer
+ &#8599; menus_orders( id )</title><a xlink:href='#public.menus_orders.menu_item_id'><use x='1263' y='794' xlink:href='#fk'/><title>&#x1F517;  References menu_items ( menu_item_id -&gt; id ) </title></a>
+  <text id='public&#46;menus&#95;orders&#46;order&#95;id' x='1159' y='823' onmouseover="hghl(['menus_orders_fk_menus_orders_orders','public.orders.id'])" onmouseout="uhghl(['menus_orders_fk_menus_orders_orders','public.orders.id'])">order&#95;id</text><title>&#10697;  order_id
+     integer
+ &#8599; menus_orders( id )</title><a xlink:href='#public.menus_orders.order_id'><use x='1263' y='811' xlink:href='#fk'/><title>&#x1F517;  References orders ( order_id -&gt; id ) </title></a>
+
+<!-- == Table 'notification_channels' == -->
+<rect id='depict_public&#46;notification&#95;channels' class='entity' style='stroke:none;' x='527' y='77' width='170' height='153' rx='4' ry='4' />
+<path d='M 527 106 L 527 81 Q 527 77 531 77 L 693 77 Q 697 77 697 81 L 697 106 L527 106 ' style='fill:url(#tbg_BED3F4);stroke:none;' />
+<rect class='entity' x='527' y='77' width='170' height='153' rx='4' ry='4' style='fill:none;stroke:#E1E7F2'/>
+<text id='depict&#45;public&#46;notification&#95;channels' x='530' y='96' class='tableHeader' style='fill:#27416D;'>notification&#95;channels</text><title>Table public.notification_channels</title>  <use x='529' y='115' xlink:href='#nn'/><use x='529' y='114' xlink:href='#pk'><title>&#x1F511;  Pk pk_notification_channels ( id ) </title></use><text id='public&#46;notification&#95;channels&#46;id' x='547' y='126' onmouseover="hghl(['notification_subscribers_fk_notification_subscribers','public.notification_subscribers.channel_id'])" onmouseout="uhghl(['notification_subscribers_fk_notification_subscribers','public.notification_subscribers.channel_id'])" class='colPk'>id</text><title>&#10697;  id
+     * integer
+ &#8601; notification_subscribers( id )</title><a xlink:href='#public.notification_channels.id'><use x='685' y='114' xlink:href='#ref'/><title>&#x1F517;  Referred by notification_subscribers ( channel_id -&gt; id ) </title></a>
+  <text id='public&#46;notification&#95;channels&#46;channel&#95;title' x='547' y='143'>channel&#95;title</text><title>&#10697;  channel_title
+     varchar(18)</title><text x='694' y='140' text-anchor='end' class='colType'>t</text>  <text id='public&#46;notification&#95;channels&#46;created&#95;by' x='547' y='160' onmouseover="hghl(['notification_channels_fk_notification_channels_users','public.users.id'])" onmouseout="uhghl(['notification_channels_fk_notification_channels_users','public.users.id'])">created&#95;by</text><title>&#10697;  created_by
+     integer
+ &#8599; notification_channels( id )</title><a xlink:href='#public.notification_channels.created_by'><use x='685' y='148' xlink:href='#fk'/><title>&#x1F517;  References users ( created_by -&gt; id ) </title></a>
+  <text id='public&#46;notification&#95;channels&#46;created&#95;at' x='547' y='177'>created&#95;at</text><title>&#10697;  created_at
+     date default CURRENT_DATE</title><text x='694' y='174' text-anchor='end' class='colType'>d</text>  <text id='public&#46;notification&#95;channels&#46;updated&#95;at' x='547' y='194'>updated&#95;at</text><title>&#10697;  updated_at
+     date</title><text x='694' y='191' text-anchor='end' class='colType'>d</text>  <text id='public&#46;notification&#95;channels&#46;deleted&#95;at' x='547' y='211'>deleted&#95;at</text><title>&#10697;  deleted_at
+     date</title><text x='694' y='208' text-anchor='end' class='colType'>d</text>
+<!-- == Table 'notification_subscribers' == -->
+<rect id='depict_public&#46;notification&#95;subscribers' class='entity' style='stroke:none;' x='799' y='77' width='204' height='85' rx='4' ry='4' />
+<path d='M 799 106 L 799 81 Q 799 77 803 77 L 999 77 Q 1003 77 1003 81 L 1003 106 L799 106 ' style='fill:url(#tbg_BED3F4);stroke:none;' />
+<rect class='entity' x='799' y='77' width='204' height='85' rx='4' ry='4' style='fill:none;stroke:#E1E7F2'/>
+<text id='depict&#45;public&#46;notification&#95;subscribers' x='810' y='96' class='tableHeader' style='fill:#27416D;'>notification&#95;subscribers</text><title>Table public.notification_subscribers</title>  <text id='public&#46;notification&#95;subscribers&#46;user&#95;id' x='819' y='126' onmouseover="hghl(['notification_subscribers_fk_notification_subscribers_users','public.users.id'])" onmouseout="uhghl(['notification_subscribers_fk_notification_subscribers_users','public.users.id'])">user&#95;id</text><title>&#10697;  user_id
+     integer
+ &#8599; notification_subscribers( id )</title><a xlink:href='#public.notification_subscribers.user_id'><use x='991' y='114' xlink:href='#fk'/><title>&#x1F517;  References users ( user_id -&gt; id ) </title></a>
+  <text id='public&#46;notification&#95;subscribers&#46;channel&#95;id' x='819' y='143' onmouseover="hghl(['notification_subscribers_fk_notification_subscribers','public.notification_channels.id'])" onmouseout="uhghl(['notification_subscribers_fk_notification_subscribers','public.notification_channels.id'])">channel&#95;id</text><title>&#10697;  channel_id
+     integer
+ &#8599; notification_subscribers( id )</title><a xlink:href='#public.notification_subscribers.channel_id'><use x='991' y='131' xlink:href='#fk'/><title>&#x1F517;  References notification_channels ( channel_id -&gt; id ) </title></a>
+
+<!-- == Table 'order_review' == -->
+<rect id='depict_public&#46;order&#95;review' class='entity' style='stroke:none;' x='323' y='1284' width='119' height='153' rx='4' ry='4' />
+<path d='M 323 1313 L 323 1288 Q 323 1284 327 1284 L 438 1284 Q 442 1284 442 1288 L 442 1313 L323 1313 ' style='fill:url(#tbg_F4DDBE);stroke:none;' />
+<rect class='entity' x='323' y='1284' width='119' height='153' rx='4' ry='4' style='fill:none;stroke:#F2EAE1'/>
+<text id='depict&#45;public&#46;order&#95;review' x='331' y='1303' class='tableHeader' style='fill:#6D4E27;'>order&#95;review</text><title>Table public.order_review</title>  <use x='325' y='1322' xlink:href='#nn'/><use x='325' y='1321' xlink:href='#pk'><title>&#x1F511;  Pk pk_order_review ( id ) </title></use><text id='public&#46;order&#95;review&#46;id' x='343' y='1333' class='colPk'>id</text><title>&#10697;  id
+     * integer</title><text x='439' y='1330' text-anchor='end' class='colType'>&#35;</text>  <use x='325' y='1339' xlink:href='#nn'/><text id='public&#46;order&#95;review&#46;order&#95;id' x='343' y='1350' onmouseover="hghl(['order_review_fk_order_review_orders','public.orders.id'])" onmouseout="uhghl(['order_review_fk_order_review_orders','public.orders.id'])">order&#95;id</text><title>&#10697;  order_id
+     * integer
+ &#8599; order_review( id )</title><a xlink:href='#public.order_review.order_id'><use x='430' y='1338' xlink:href='#fk'/><title>&#x1F517;  References orders ( order_id -&gt; id ) </title></a>
+  <text id='public&#46;order&#95;review&#46;review&#95;id' x='343' y='1367' onmouseover="hghl(['order_review_fk_order_review_reviews','public.reviews.id'])" onmouseout="uhghl(['order_review_fk_order_review_reviews','public.reviews.id'])">review&#95;id</text><title>&#10697;  review_id
+     integer
+ &#8599; order_review( id )</title><a xlink:href='#public.order_review.review_id'><use x='430' y='1355' xlink:href='#fk'/><title>&#x1F517;  References reviews ( review_id -&gt; id ) </title></a>
+  <text id='public&#46;order&#95;review&#46;created&#95;at' x='343' y='1384'>created&#95;at</text><title>&#10697;  created_at
+     date default CURRENT_DATE</title><text x='439' y='1381' text-anchor='end' class='colType'>d</text>  <text id='public&#46;order&#95;review&#46;updated&#95;at' x='343' y='1401'>updated&#95;at</text><title>&#10697;  updated_at
+     date</title><text x='439' y='1398' text-anchor='end' class='colType'>d</text>  <text id='public&#46;order&#95;review&#46;deleted&#95;at' x='343' y='1418'>deleted&#95;at</text><title>&#10697;  deleted_at
+     date</title><text x='439' y='1415' text-anchor='end' class='colType'>d</text>
+<!-- == Table 'orders' == -->
+<rect id='depict_public&#46;orders' class='entity' style='stroke:none;' x='51' y='944' width='170' height='238' rx='4' ry='4' />
+<path d='M 51 973 L 51 948 Q 51 944 55 944 L 217 944 Q 221 944 221 948 L 221 973 L51 973 ' style='fill:url(#tbg_F4DDBE);stroke:none;' />
+<rect class='entity' x='51' y='944' width='170' height='238' rx='4' ry='4' style='fill:none;stroke:#F2EAE1'/>
+<text id='depict&#45;public&#46;orders' x='109' y='963' class='tableHeader' style='fill:#6D4E27;'>orders</text><title>Table public.orders</title>  <use x='53' y='982' xlink:href='#nn'/><use x='53' y='981' xlink:href='#pk'><title>&#x1F511;  Pk pk_orders ( id ) </title></use><text id='public&#46;orders&#46;id' x='71' y='993' onmouseover="hghl(['menus_orders_fk_menus_orders_orders','public.menus_orders.order_id','order_review_fk_order_review_orders','public.order_review.order_id'])" onmouseout="uhghl(['menus_orders_fk_menus_orders_orders','public.menus_orders.order_id','order_review_fk_order_review_orders','public.order_review.order_id'])" class='colPk'>id</text><title>&#10697;  id
+     * integer
+ &#8601; menus_orders( id )
+ &#8601; order_review( id )</title><a xlink:href='#public.orders.id'><use x='209' y='981' xlink:href='#ref'/><title>&#x1F517;  Referred by menus_orders ( order_id -&gt; id ) 
+Referred by order_review ( order_id -&gt; id ) </title></a>
+  <use x='53' y='999' xlink:href='#nn'/><text id='public&#46;orders&#46;user&#95;id' x='71' y='1010' onmouseover="hghl(['orders_fk_orders_users','public.users.id'])" onmouseout="uhghl(['orders_fk_orders_users','public.users.id'])">user&#95;id</text><title>&#10697;  user_id
+     * integer
+ &#8599; orders( id )</title><a xlink:href='#public.orders.user_id'><use x='209' y='998' xlink:href='#fk'/><title>&#x1F517;  References users ( user_id -&gt; id ) </title></a>
+  <text id='public&#46;orders&#46;total' x='71' y='1027'>total</text><title>&#10697;  total
+     double precision</title><text x='218' y='1024' text-anchor='end' class='colType'>&#35;</text>  <text id='public&#46;orders&#46;discounted' x='71' y='1044'>discounted</text><title>&#10697;  discounted
+     bit</title><text x='218' y='1041' text-anchor='end' class='colType'>b</text>  <text id='public&#46;orders&#46;discount&#95;amount' x='71' y='1061'>discount&#95;amount</text><title>&#10697;  discount_amount
+     double precision</title><text x='218' y='1058' text-anchor='end' class='colType'>&#35;</text>  <text id='public&#46;orders&#46;completed' x='71' y='1078'>completed</text><title>&#10697;  completed
+     bit</title><text x='218' y='1075' text-anchor='end' class='colType'>b</text>  <text id='public&#46;orders&#46;meta' x='71' y='1095'>meta</text><title>&#10697;  meta
+     jsonb</title>  <text id='public&#46;orders&#46;delivery&#95;info' x='71' y='1112' onmouseover="hghl(['orders_fk_orders_delivery_info','public.delivery_info.id'])" onmouseout="uhghl(['orders_fk_orders_delivery_info','public.delivery_info.id'])">delivery&#95;info</text><title>&#10697;  delivery_info
+     integer
+ &#8599; orders( id )</title><a xlink:href='#public.orders.delivery_info'><use x='209' y='1100' xlink:href='#fk'/><title>&#x1F517;  References delivery_info ( delivery_info -&gt; id ) </title></a>
+  <text id='public&#46;orders&#46;created&#95;at' x='71' y='1129'>created&#95;at</text><title>&#10697;  created_at
+     date default CURRENT_DATE</title><text x='218' y='1126' text-anchor='end' class='colType'>d</text>  <text id='public&#46;orders&#46;updated&#95;at' x='71' y='1146'>updated&#95;at</text><title>&#10697;  updated_at
+     date</title><text x='218' y='1143' text-anchor='end' class='colType'>d</text>  <text id='public&#46;orders&#46;deleted&#95;at' x='71' y='1163'>deleted&#95;at</text><title>&#10697;  deleted_at
+     date</title><text x='218' y='1160' text-anchor='end' class='colType'>d</text>
+<!-- == Table 'reviews' == -->
+<rect id='depict_public&#46;reviews' class='entity' style='stroke:none;' x='544' y='944' width='119' height='153' rx='4' ry='4' />
+<path d='M 544 973 L 544 948 Q 544 944 548 944 L 659 944 Q 663 944 663 948 L 663 973 L544 973 ' style='fill:url(#tbg_F4DDBE);stroke:none;' />
+<rect class='entity' x='544' y='944' width='119' height='153' rx='4' ry='4' style='fill:none;stroke:#F2EAE1'/>
+<text id='depict&#45;public&#46;reviews' x='572' y='963' class='tableHeader' style='fill:#6D4E27;'>reviews</text><title>Table public.reviews
+ ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+      REVIEW ENTITY ALSO READY FOR ANY RELATION THAT NEEDS IT,
+      NOTE THAT A REVIEW CANNOT EXIST ON ITSELF, SHOULD LINK TO SOMETHING
+      E.G, linking to a list creates relation lists_reviews with links to this relation</title>  <use x='546' y='982' xlink:href='#nn'/><use x='546' y='981' xlink:href='#pk'><title>&#x1F511;  Pk pk_reviews ( id ) </title></use><text id='public&#46;reviews&#46;id' x='564' y='993' onmouseover="hghl(['list_reviews_fk_list_reviews_reviews','public.list_reviews.review_id','order_review_fk_order_review_reviews','public.order_review.review_id'])" onmouseout="uhghl(['list_reviews_fk_list_reviews_reviews','public.list_reviews.review_id','order_review_fk_order_review_reviews','public.order_review.review_id'])" class='colPk'>id</text><title>&#10697;  id
+     * integer
+ &#8601; list_reviews( id )
+ &#8601; order_review( id )</title><a xlink:href='#public.reviews.id'><use x='651' y='981' xlink:href='#ref'/><title>&#x1F517;  Referred by list_reviews ( review_id -&gt; id ) 
+Referred by order_review ( review_id -&gt; id ) </title></a>
+  <text id='public&#46;reviews&#46;content' x='564' y='1010'>content</text><title>&#10697;  content
+     varchar</title><text x='660' y='1007' text-anchor='end' class='colType'>t</text>  <text id='public&#46;reviews&#46;star&#95;rating' x='564' y='1027'>star&#95;rating</text><title>&#10697;  star_rating
+     varchar</title><text x='660' y='1024' text-anchor='end' class='colType'>t</text>  <text id='public&#46;reviews&#46;created&#95;at' x='564' y='1044'>created&#95;at</text><title>&#10697;  created_at
+     date default CURRENT_DATE</title><text x='660' y='1041' text-anchor='end' class='colType'>d</text>  <text id='public&#46;reviews&#46;updated&#95;at' x='564' y='1061'>updated&#95;at</text><title>&#10697;  updated_at
+     date</title><text x='660' y='1058' text-anchor='end' class='colType'>d</text>  <text id='public&#46;reviews&#46;deleted&#95;at' x='564' y='1078'>deleted&#95;at</text><title>&#10697;  deleted_at
+     date</title><text x='660' y='1075' text-anchor='end' class='colType'>d</text>
+<!-- == Table 'roles' == -->
+<rect id='depict_public&#46;roles' class='entity' style='stroke:none;' x='272' y='621' width='119' height='170' rx='4' ry='4' />
+<path d='M 272 650 L 272 625 Q 272 621 276 621 L 387 621 Q 391 621 391 625 L 391 650 L272 650 ' style='fill:url(#tbg_BED3F4);stroke:none;' />
+<rect class='entity' x='272' y='621' width='119' height='170' rx='4' ry='4' style='fill:none;stroke:#E1E7F2'/>
+<text id='depict&#45;public&#46;roles' x='310' y='640' class='tableHeader' style='fill:#27416D;'>roles</text><title>Table public.roles
+ ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+      THE APPLICATION SUPPORTED ROLES
+      WITH A CODE,NAME AND DESCRIPTION</title>  <use x='274' y='659' xlink:href='#nn'/><use x='274' y='658' xlink:href='#pk'><title>&#x1F511;  Pk pk_roles ( role_id ) </title></use><text id='public&#46;roles&#46;role&#95;id' x='292' y='670' onmouseover="hghl(['user_roles_fk_user_roles_roles','public.user_roles.role_id'])" onmouseout="uhghl(['user_roles_fk_user_roles_roles','public.user_roles.role_id'])" class='colPk'>role&#95;id</text><title>&#10697;  role_id
+     * integer
+ &#8601; user_roles( role_id )</title><a xlink:href='#public.roles.role_id'><use x='379' y='658' xlink:href='#ref'/><title>&#x1F517;  Referred by user_roles ( role_id ) </title></a>
+  <text id='public&#46;roles&#46;role&#95;name' x='292' y='687'>role&#95;name</text><title>&#10697;  role_name
+     varchar(100)</title><text x='388' y='684' text-anchor='end' class='colType'>t</text>  <text id='public&#46;roles&#46;code' x='292' y='704'>code</text><title>&#10697;  code
+     varchar(4) default 901</title><text x='388' y='701' text-anchor='end' class='colType'>t</text>  <text id='public&#46;roles&#46;description' x='292' y='721'>description</text><title>&#10697;  description
+     varchar(48)</title><text x='388' y='718' text-anchor='end' class='colType'>t</text>  <text id='public&#46;roles&#46;created&#95;at' x='292' y='738'>created&#95;at</text><title>&#10697;  created_at
+     date default CURRENT_DATE</title><text x='388' y='735' text-anchor='end' class='colType'>d</text>  <text id='public&#46;roles&#46;updated&#95;at' x='292' y='755'>updated&#95;at</text><title>&#10697;  updated_at
+     date</title><text x='388' y='752' text-anchor='end' class='colType'>d</text>  <text id='public&#46;roles&#46;deleted&#95;at' x='292' y='772'>deleted&#95;at</text><title>&#10697;  deleted_at
+     date</title><text x='388' y='769' text-anchor='end' class='colType'>d</text>
+<!-- == Table 'system' == -->
+<rect id='depict_public&#46;system' class='entity' style='stroke:none;' x='884' y='944' width='119' height='153' rx='4' ry='4' />
+<path d='M 884 973 L 884 948 Q 884 944 888 944 L 999 944 Q 1003 944 1003 948 L 1003 973 L884 973 ' style='fill:url(#tbg_3986C1);stroke:none;' />
+<rect class='entity' x='884' y='944' width='119' height='153' rx='4' ry='4' style='fill:none;stroke:#E1EAF2'/>
+<text id='depict&#45;public&#46;system' x='914' y='963' class='tableHeader' style='fill:#274E6D;'>system</text><title>Table public.system
+ ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+      USE NOT YET CLEAR BUT REPRESENTS THE STRUCTURE OF THE SERVER</title>  <use x='886' y='982' xlink:href='#nn'/><use x='886' y='981' xlink:href='#pk'><title>&#x1F511;  Pk pk_system ( id ) </title></use><text id='public&#46;system&#46;id' x='904' y='993' class='colPk'>id</text><title>&#10697;  id
+     * integer</title><text x='1000' y='990' text-anchor='end' class='colType'>&#35;</text>  <text id='public&#46;system&#46;os' x='904' y='1010'>os</text><title>&#10697;  os
+     integer</title><text x='1000' y='1007' text-anchor='end' class='colType'>&#35;</text>  <text id='public&#46;system&#46;server&#95;id' x='904' y='1027'>server&#95;id</text><title>&#10697;  server_id
+     integer</title><text x='1000' y='1024' text-anchor='end' class='colType'>&#35;</text>  <text id='public&#46;system&#46;created&#95;at' x='904' y='1044'>created&#95;at</text><title>&#10697;  created_at
+     date default CURRENT_DATE</title><text x='1000' y='1041' text-anchor='end' class='colType'>d</text>  <text id='public&#46;system&#46;updated&#95;at' x='904' y='1061'>updated&#95;at</text><title>&#10697;  updated_at
+     date</title><text x='1000' y='1058' text-anchor='end' class='colType'>d</text>  <text id='public&#46;system&#46;deleted&#95;at' x='904' y='1078'>deleted&#95;at</text><title>&#10697;  deleted_at
+     date</title><text x='1000' y='1075' text-anchor='end' class='colType'>d</text>
+<!-- == Table 'user_roles' == -->
+<rect id='depict_public&#46;user&#95;roles' class='entity' style='stroke:none;' x='272' y='434' width='102' height='85' rx='4' ry='4' />
+<path d='M 272 463 L 272 438 Q 272 434 276 434 L 370 434 Q 374 434 374 438 L 374 463 L272 463 ' style='fill:url(#tbg_BED3F4);stroke:none;' />
+<rect class='entity' x='272' y='434' width='102' height='85' rx='4' ry='4' style='fill:none;stroke:#E1E7F2'/>
+<text id='depict&#45;public&#46;user&#95;roles' x='282' y='453' class='tableHeader' style='fill:#27416D;'>user&#95;roles</text><title>Table public.user_roles</title>  <use x='274' y='472' xlink:href='#nn'/><text id='public&#46;user&#95;roles&#46;user&#95;id' x='292' y='483' onmouseover="hghl(['user_roles_fk_user_roles_users','public.users.id'])" onmouseout="uhghl(['user_roles_fk_user_roles_users','public.users.id'])">user&#95;id</text><title>&#10697;  user_id
+     * integer
+ &#8599; user_roles( id )</title><a xlink:href='#public.user_roles.user_id'><use x='362' y='471' xlink:href='#fk'/><title>&#x1F517;  References users ( user_id -&gt; id ) </title></a>
+  <use x='274' y='489' xlink:href='#nn'/><text id='public&#46;user&#95;roles&#46;role&#95;id' x='292' y='500' onmouseover="hghl(['user_roles_fk_user_roles_roles','public.roles.role_id'])" onmouseout="uhghl(['user_roles_fk_user_roles_roles','public.roles.role_id'])">role&#95;id</text><title>&#10697;  role_id
+     * integer
+ &#8599; user_roles( role_id )</title><a xlink:href='#public.user_roles.role_id'><use x='362' y='488' xlink:href='#fk'/><title>&#x1F517;  References roles ( role_id ) </title></a>
+
+<!-- == Table 'users' == -->
+<rect id='depict_public&#46;users' class='entity' style='stroke:none;' x='272' y='77' width='153' height='255' rx='4' ry='4' />
+<path d='M 272 106 L 272 81 Q 272 77 276 77 L 421 77 Q 425 77 425 81 L 425 106 L272 106 ' style='fill:url(#tbg_BED3F4);stroke:none;' />
+<rect class='entity' x='272' y='77' width='153' height='255' rx='4' ry='4' style='fill:none;stroke:#E1E7F2'/>
+<text id='depict&#45;public&#46;users' x='325' y='96' class='tableHeader' style='fill:#27416D;'>users</text><title>Table public.users</title>  <use x='274' y='115' xlink:href='#nn'/><use x='274' y='114' xlink:href='#pk'><title>&#x1F511;  Pk pk_users ( id ) </title></use><text id='public&#46;users&#46;id' x='292' y='126' onmouseover="hghl(['business_fk_business_user','public.business.profile_id','delivery_info_fk_delivery_info_users','public.delivery_info.user_id','device_info_fk_device_info_users','public.device_info.user_id','list_reviews_fk_list_reviews_users','public.list_reviews.user_id','lists_fk_lists_users','public.lists.user_id','notification_channels_fk_notification_channels_users','public.notification_channels.created_by','notification_subscribers_fk_notification_subscribers_users','public.notification_subscribers.user_id','orders_fk_orders_users','public.orders.user_id','user_roles_fk_user_roles_users','public.user_roles.user_id'])" onmouseout="uhghl(['business_fk_business_user','public.business.profile_id','delivery_info_fk_delivery_info_users','public.delivery_info.user_id','device_info_fk_device_info_users','public.device_info.user_id','list_reviews_fk_list_reviews_users','public.list_reviews.user_id','lists_fk_lists_users','public.lists.user_id','notification_channels_fk_notification_channels_users','public.notification_channels.created_by','notification_subscribers_fk_notification_subscribers_users','public.notification_subscribers.user_id','orders_fk_orders_users','public.orders.user_id','user_roles_fk_user_roles_users','public.user_roles.user_id'])" class='colPk'>id</text><title>&#10697;  id
+     * integer
+ &#8601; business( id )
+ &#8601; delivery_info( id )
+ &#8601; device_info( id )
+ &#8601; list_reviews( id )
+ &#8601; lists( id )
+ &#8601; notification_channels( id )
+ &#8601; notification_subscribers( id )
+ &#8601; orders( id )
+ &#8601; user_roles( id )</title><a xlink:href='#public.users.id'><use x='413' y='114' xlink:href='#ref'/><title>&#x1F517;  Referred by business ( profile_id -&gt; id ) 
+Referred by delivery_info ( user_id -&gt; id ) 
+Referred by device_info ( user_id -&gt; id ) 
+Referred by list_reviews ( user_id -&gt; id ) 
+Referred by lists ( user_id -&gt; id ) 
+Referred by notification_channels ( created_by -&gt; id ) 
+Referred by notification_subscribers ( user_id -&gt; id ) 
+Referred by orders ( user_id -&gt; id ) 
+Referred by user_roles ( user_id -&gt; id ) </title></a>
+  <use x='274' y='131' xlink:href='#unq'><title>&#x1F50D;  Unq unq_users_user_id ( firebase_user_id ) </title></use><text id='public&#46;users&#46;firebase&#95;user&#95;id' x='292' y='143'>firebase&#95;user&#95;id</text><title>&#10697;  firebase_user_id
+     varchar</title><text x='422' y='140' text-anchor='end' class='colType'>t</text>  <text id='public&#46;users&#46;phone' x='292' y='160'>phone</text><title>&#10697;  phone
+     bigint</title><text x='422' y='157' text-anchor='end' class='colType'>&#35;</text>  <text id='public&#46;users&#46;email' x='292' y='177'>email</text><title>&#10697;  email
+     varchar</title><text x='422' y='174' text-anchor='end' class='colType'>t</text>  <text id='public&#46;users&#46;meta' x='292' y='194'>meta</text><title>&#10697;  meta
+     jsonb</title>  <text id='public&#46;users&#46;is&#95;verified' x='292' y='211'>is&#95;verified</text><title>&#10697;  is_verified
+     bit</title><text x='422' y='208' text-anchor='end' class='colType'>b</text>  <text id='public&#46;users&#46;contact&#95;info' x='292' y='228' onmouseover="hghl(['users_fk_users_contact_info','public.contact_info.id'])" onmouseout="uhghl(['users_fk_users_contact_info','public.contact_info.id'])">contact&#95;info</text><title>&#10697;  contact_info
+     integer
+ &#8599; users( id )</title><a xlink:href='#public.users.contact_info'><use x='413' y='216' xlink:href='#fk'/><title>&#x1F517;  References contact_info ( contact_info -&gt; id ) </title></a>
+  <text id='public&#46;users&#46;settings' x='292' y='245'>settings</text><title>&#10697;  settings
+     json</title>  <text id='public&#46;users&#46;date&#95;joined' x='292' y='262'>date&#95;joined</text><title>&#10697;  date_joined
+     date default CURRENT_DATE</title><text x='422' y='259' text-anchor='end' class='colType'>d</text>  <text id='public&#46;users&#46;created&#95;at' x='292' y='279'>created&#95;at</text><title>&#10697;  created_at
+     date default CURRENT_DATE</title><text x='422' y='276' text-anchor='end' class='colType'>d</text>  <text id='public&#46;users&#46;updated&#95;at' x='292' y='296'>updated&#95;at</text><title>&#10697;  updated_at
+     date</title><text x='422' y='293' text-anchor='end' class='colType'>d</text>  <text id='public&#46;users&#46;deleted&#95;at' x='292' y='313'>deleted&#95;at</text><title>&#10697;  deleted_at
+     date</title><text x='422' y='310' text-anchor='end' class='colType'>d</text>
+</g></svg>
