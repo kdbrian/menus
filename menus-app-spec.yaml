@@ -196,6 +196,7 @@ paths:
                 $ref: '#/components/schemas/RequestBody'
 
   /api/menu:
+
     get:
       description: Fetch all available menus
       responses:
@@ -213,12 +214,56 @@ paths:
               schema:
                 $ref: '#/components/schemas/RequestBody'
 
+    post:
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Menu'
+
+  /api/menu/{menu_id}:
+    get:
+      description: 'fetch a menu given ID'
+      responses:
+        200:
+          description: 'Success, menu wrapped in response'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RequestBody'
+
+        404:
+          description: 'Missing menu, message wrapped'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RequestBody'
+
+    patch:
+      description: 'Update menu with given ID'
+      requestBody:
+      responses:
+        200:
+          description: 'successful updated menu'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RequestBody'
+
+
+    delete:
+      description: 'Delete menu given ID'
+      responses:
+        204:
+          description: 'deletion success'
+
   # Empty placeholders for other endpoints
-  /api/list: {}
-  /api/order: {}
-  /api/notification: {}
-  /api/review: {}
-  /api/system: {}
+  /api/list: { }
+  /api/order: { }
+  /api/notification: { }
+  /api/review: { }
+  /api/system: { }
 
 components:
   schemas:
@@ -229,28 +274,27 @@ components:
         id:
           type: integer
         created_at:
-          type: string
-          format: date-time
+          type: date-time
         updated_at:
-          type: string
-          format: date-time
+          type: date-time
         deleted_at:
-          type: string
-          format: date-time
+          type: date-time
 
     LatLng:
       type: object
       properties:
         lat:
-          type: number
+          type: float
         lng:
-          type: number
+          type: float
 
     ContactInfo:
       type: object
       properties:
+
         gorm.Model:
           $ref: '#/components/schemas/gorm.Model'
+
         location_name:
           type: string
         zip_code:
@@ -261,16 +305,24 @@ components:
     Business:
       type: object
       properties:
+
         id:
           type: integer
+
         name:
           type: string
+
         location:
           type: string
+
         contact_info:
           $ref: '#/components/schemas/ContactInfo'
+
         profile_id:
           type: integer
+
+    Tag:
+      type: string
 
     KeyValue:
       type: object
@@ -280,34 +332,340 @@ components:
         value:
           type: object
 
-    Meta:
-      type: object
-      properties:
-        KeyValue:
-          $ref: '#/components/schemas/KeyValue'
-
     User:
       type: object
       properties:
         gorm.Model:
+          type: object
           $ref: '#/components/schemas/gorm.Model'
+
         firebase_user_id:
           type: string
+
         phone:
           type: integer
+
         email:
           type: string
+
         is_verified:
           type: boolean
+
         contact_info:
+          type: object
           $ref: '#/components/schemas/ContactInfo'
+
         settings:
+          #          type: object
           $ref: '#/components/schemas/KeyValue'
+
         date_joined:
-          type: string
-          format: date-time
+          type: date-time
+
         meta:
+          #          type: object
           $ref: '#/components/schemas/Meta'
+
+    Role:
+      type: object
+      properties:
+        gorm.Model:
+          type: object
+          $ref: '#/components/schemas/gorm.Model'
+
+        role_name:
+          type: string
+
+        code:
+          type: string
+
+        description:
+          type: string
+
+    Menu:
+      type: object
+      properties:
+        gorm.Model:
+          type: object
+          $ref: '#/components/schemas/gorm.Model'
+        title:
+          type: string
+        business_id:
+          type: integer
+        tags:
+          type: array
+          items:
+            $ref: "#/components/schemas/Tag"
+
+    MenuItems:
+      type: object
+      properties:
+        gorm.Model:
+          type: object
+          $ref: '#/components/schemas/gorm.Model'
+
+        contents:
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValue'
+
+        images:
+          type: array
+          items:
+            type: string
+
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tag'
+
+        price:
+          type: float
+
+        unit_at:
+          type: string
+
+        unit_scale:
+          type: string
+
+        unit_symbol:
+          type: string
+
+        serving_type:
+          type: string
+
+        discounted:
+          type: boolean
+
+        total_kcal:
+          type: float
+
+        meta:
+          type: object
+          items:
+            $ref: '#/components/schemas/KeyValue'
+
+    DeliveryInfo:
+      type: object
+      properties:
+
+        gorm.Model:
+          type: object
+          $ref: '#/components/schemas/gorm.Model'
+
+        user_id:
+          type: object
+          $ref: '#/components/schemas/User'
+
+        contact_info:
+          type: object
+          $ref: '#/components/schemas/ContactInfo'
+
+        is_public:
+          type: boolean
+
+    Order:
+      type: object
+      properties:
+        gorm.Model:
+          type: object
+          $ref: '#/components/schemas/gorm.Model'
+
+        user_id:
+          type: object
+          $ref: '#/components/schemas/User'
+
+        total:
+          type: float
+
+        discounted:
+          type: boolean
+
+        discounted_amount:
+          type: float
+
+        completed:
+          type: boolean
+
+        meta:
+          type: object
+          properties:
+            KeyValue:
+              type: object
+              $ref: '#/components/schemas/KeyValue'
+
+        delivery_info:
+          type: object
+          $ref: '#/components/schemas/DeliveryInfo'
+
+    Meta:
+      type: object
+      properties:
+        KeyValue:
+          type: object
+          $ref: '#/components/schemas/KeyValue'
+
+    Review:
+      type: object
+      properties:
+
+        gorm.Model:
+          type: object
+          $ref: '#/components/schemas/gorm.Model'
+
+        contents:
+          type: string
+
+        star_rating:
+          type: float
+
+    OrderReview:
+      type: object
+      properties:
+
+        gorm.Model:
+          type: object
+          $ref: '#/components/schemas/gorm.Model'
+
+        order_id:
+          type: object
+          $ref: '#/components/schemas/Order'
+
+        review_id:
+          type: object
+          $ref: '#/components/schemas/Review'
+
+    List:
+      type: object
+      properties:
+
+        gorm.Model:
+          type: object
+          $ref: '#/components/schemas/gorm.Model'
+
+        name:
+          type: string
+
+        user_id:
+          type: object
+          $ref: '#/components/schemas/User'
+
+        is_public:
+          type: boolean
+
+        meta:
+          type: object
+          $ref: '#/components/schemas/Meta'
+
+    ListReview:
+      type: object
+      properties:
+
+        gorm.Model:
+          type: object
+          $ref: '#/components/schemas/gorm.Model'
+
+        list_id:
+          type: object
+          $ref: '#/components/schemas/List'
+
+        review_id:
+          type: object
+          $ref: '#/components/schemas/Review'
+
+        user_id:
+          type: object
+          $ref: '#/components/schemas/User'
+
+    System:
+      type: object
+      properties:
+        gorm.Model:
+          type: object
+          $ref: '#/components/schemas/gorm.Model'
+
+        os:
+          type: string
+
+        server_id:
+          type: string
+
+    DeviceInfo:
+      type: object
+      properties:
+
+        gorm.Model:
+          type: object
+          $ref: '#/components/schemas/gorm.Model'
+
+        user_id:
+          type: object
+          $ref: '#/components/schemas/User'
+
+        name:
+          type: string
+
+        model:
+          type: string
+
+        meta:
+          type: object
+          $ref: '#/components/schemas/Meta'
+
+    AnalyticsEvent:
+      type: object
+      properties:
+
+        gorm.Model:
+          type: object
+          $ref: '#/components/schemas/gorm.Model'
+
+        event_name:
+          type: string
+
+        event_code:
+          type: string
+
+        event_for:
+          type: string
+
+    Analytics:
+      type: object
+      properties:
+        gorm.Model:
+          type: object
+          $ref: '#/components/schemas/gorm.Model'
+
+        device_info:
+          type: object
+          $ref: '#/components/schemas/DeviceInfo'
+
+        event_code:
+          type: object
+          $ref: '#/components/schemas/AnalyticsEvent'
+
+    NotificationChannel:
+      type: object
+      properties:
+
+        gorm.Model:
+          type: object
+          $ref: '#/components/schemas/gorm.Model'
+
+        channel_title:
+          type: string
+
+    NotificationSubscribers:
+      type: object
+      properties:
+
+        user_id:
+          type: object
+          $ref: '#/components/schemas/User'
+
+        channel_id:
+          type: object
+          $ref: '#/components/schemas/NotificationChannel'
 
     RequestBody:
       type: object

@@ -41,7 +41,10 @@ func (receiver DatabaseConfig) Dsn() string {
 
 func Connect() error {
 
-	godotenv.Load(".env.local")
+	err := godotenv.Load(".env.local")
+	if err != nil {
+		return err
+	}
 
 	var dbHost, dbPort, dbName, dbUser, dbPassword = os.Getenv(POSTGRES_DB_HOST),
 		os.Getenv(POSTGRES_DB_PORT),
