@@ -1,61 +1,65 @@
 openapi: 3.1.0
 info:
-  title: Menus app
-  description: An app for menus, nothing much
+  title: Menus App
+  description: API documentation for the Menus app
   version: 1.0.0
 servers:
   - url: http://localhost:6969/
-    variables:
-      port: 6969
 
 paths:
-  /api/business/:
-    get:
+
+  /api/user:
+    post:
+      summary: Register user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
       responses:
-        200:
-          description: Successful retrieval
+        '201':
+          description: User successfully registered
           content:
             application/json:
               schema:
-                type: object
-                content:
-                  success:
-                    type: boolean
-                    example: false
-                  data:
-                    type: array
-                    items:
-                      properties:
-                        gorm.Model:
-                          type: object
+                $ref: '#/components/schemas/RequestBody'
 
-                        location:
-                          type: String
+    get:
+      summary: Fetch all user accounts
+      responses:
+        '200':
+          description: Successfully retrieved users
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RequestBody'
 
-                        name:
-                          type: String
+  /api/user/{id}:
+    get:
+      summary: Fetch user by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: User account retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RequestBody'
 
-                        contact_info:
-                          type: object
-                          properties:
-                            location_name:
-                              type: String
-                            address:
-                              type: String
-                            zip_code:
-                              type: String
-                            lat_lng:
-                              type: object
-                              schema:
-                                properties:
-                                  lat:
-                                    type: float
-                                  lng:
-                                    type: float
-
-    post:
-      description: Add Business
-
+    patch:
+      summary: Update user account by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
       requestBody:
         required: true
         content:
@@ -63,94 +67,254 @@ paths:
             schema:
               type: object
               properties:
-                location:
-                  type: String
-                  example: San Francisco
-
-                name:
-                  type: String
-                  example: Business X
-
+                phone:
+                  type: integer
+                  example: 254
+                email:
+                  type: string
+                  example: 'jd@dev.io'
+                is_verified:
+                  type: boolean
+                  example: true
                 contact_info:
-                  type: object
-                  properties:
-                    location_name:
-                      type: String
-                      example: San Francisco
-
-                    address:
-                      type: String
-                      example: 2nd Street
-
-                    zip_code:
-                      type: String
-                      example: 40100
-
-                    lat_lng:
-                      type: object
-                      example:
-                        lat : 39.00003
-                        lng : 0.0006
-                      schema:
-                        properties:
-                          lat:
-                            type: float
-                            example: 0.4441
-                          lng:
-                            type: float
-                            example: 39.0345
-
+                  $ref: '#/components/schemas/ContactInfo'
+                settings:
+                  $ref: '#/components/schemas/KeyValue'
       responses:
-        '201':
-          description: Successfully created
+        '200':
+          description: User account updated
           content:
             application/json:
-              description: Json response body
               schema:
-                type: object
-                properties:
-                  data:
-                    properties:
-                      gorm.Model:
-                        type: object
+                $ref: '#/components/schemas/RequestBody'
 
-                      location:
-                        type: String
+    delete:
+      summary: Soft delete user account
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: User account deleted
 
-                      name:
-                        type: String
+  /api/business:
+    post:
+      summary: Create business
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Business'
+      responses:
+        '201':
+          description: Business created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RequestBody'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RequestBody'
 
-                      contact_info:
-                        type: object
-                        properties:
-                          location_name:
-                            type: String
-                            example: San Franisco
-                          address:
-                            type: String
-                            example: 34 street
-                          zip_code:
-                            type: String
-                            example: 45090
-                          lat_lng:
-                            type: object
-                            properties:
-                              lat:
-                                type: float
-                                example: 3.14
-                              lng:
-                                type: float
-                                example: 0.39
-                  success:
-                    type: boolean
-                    example: true
-                  meta_info:
-                    type: map
-
-
-
-
-
+    get:
+      summary: Fetch all businesses
+      responses:
+        '200':
+          description: Businesses retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RequestBody'
 
   /api/business/{id}:
+    get:
+      summary: Fetch business by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Business retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RequestBody'
+        '404':
+          description: Business not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RequestBody'
 
+    patch:
+      summary: Update business by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Business'
+
+    delete:
+      summary: Soft delete business by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Business deleted
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RequestBody'
+        '404':
+          description: Business not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RequestBody'
+
+  /api/menu:
+    get:
+      description: Fetch all available menus
+      responses:
+        200:
+          description: success, wrapped menus list in data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RequestBody'
+
+        500:
+          description: internal error, message wrapped in response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RequestBody'
+
+  # Empty placeholders for other endpoints
+  /api/list: {}
+  /api/order: {}
+  /api/notification: {}
+  /api/review: {}
+  /api/system: {}
+
+components:
+  schemas:
+
+    gorm.Model:
+      type: object
+      properties:
+        id:
+          type: integer
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        deleted_at:
+          type: string
+          format: date-time
+
+    LatLng:
+      type: object
+      properties:
+        lat:
+          type: number
+        lng:
+          type: number
+
+    ContactInfo:
+      type: object
+      properties:
+        gorm.Model:
+          $ref: '#/components/schemas/gorm.Model'
+        location_name:
+          type: string
+        zip_code:
+          type: string
+        lat_lng:
+          $ref: '#/components/schemas/LatLng'
+
+    Business:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        location:
+          type: string
+        contact_info:
+          $ref: '#/components/schemas/ContactInfo'
+        profile_id:
+          type: integer
+
+    KeyValue:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: object
+
+    Meta:
+      type: object
+      properties:
+        KeyValue:
+          $ref: '#/components/schemas/KeyValue'
+
+    User:
+      type: object
+      properties:
+        gorm.Model:
+          $ref: '#/components/schemas/gorm.Model'
+        firebase_user_id:
+          type: string
+        phone:
+          type: integer
+        email:
+          type: string
+        is_verified:
+          type: boolean
+        contact_info:
+          $ref: '#/components/schemas/ContactInfo'
+        settings:
+          $ref: '#/components/schemas/KeyValue'
+        date_joined:
+          type: string
+          format: date-time
+        meta:
+          $ref: '#/components/schemas/Meta'
+
+    RequestBody:
+      type: object
+      properties:
+        success:
+          type: boolean
+        data:
+          type: object
+        message:
+          type: string
